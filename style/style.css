@@ -1,0 +1,72 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0; }
+
+input:focus {
+  outline: none; }
+
+button {
+  width: 127px;
+  height: 50px;
+  border-radius: 25px; }
+
+header {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px; }
+
+section.search {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px; }
+
+section.trending {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 100%; }
+
+section.results {
+  width: 100%; }
+
+section.error {
+  width: 100%; }
+
+section.favorites {
+  width: 100%; }
+
+section.mygifos {
+  width: 100%; }
+
+section.gifcommunity {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px; }
+
+section.creategif {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px; }
+
+footer {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px; }
+
+/*# sourceMappingURL=style.css.map */

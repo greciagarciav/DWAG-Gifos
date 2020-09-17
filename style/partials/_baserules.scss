@@ -1,0 +1,53 @@
+// mixins
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+// extends
+
+//operators
+
+//global
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+body {
+
+}
+
+section {
+
+}
+
+div {
+
+}
+
+ul {
+
+}
+
+li {
+
+}
+
+p {
+
+}
+
+a {
+
+}
+
+input:focus{
+    outline: none;
+}
+
+button {
+    width: 127px;
+    height: 50px;
+    border-radius: 25px;
+}

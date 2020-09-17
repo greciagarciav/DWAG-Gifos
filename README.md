@@ -1,0 +1,1 @@
+Aplicación web interactiva para compartir GIFs animados poniendo en práctica los fundamentos de JS, la obtención de datos de la API giphy.com, asincronismo y aprovechando herramientas nativas del explorador como la obtención de imágenes a través de la webcam.
