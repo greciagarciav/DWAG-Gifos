@@ -1,7 +1,133 @@
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"]:checked~.menu {
+    display: block;
+}
+
+input[type="checkbox"]:checked~.burguer-icon {
+    display: none;
+}
+
+input[type="checkbox"]:checked~.close-icon{
+    display: block;
+}
+
 header {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    background-color: $fifth-color;
+    border-top: solid 5px $first-color;
+    position: fixed;
+    // top: 0;
+    // z-index: 999;
+    nav {
+        width: 100vw;
+        height: 95px;
+        position: relative;
+        img {
+            @include size(50px, 50px);
+            margin: 20px 16px 20px;
+        }
+        .burguer-icon {
+            display: block;
+            font-size: 20px;
+            position: absolute;
+            top: 30px;
+            right: 16px;
+            color: $first-color;
+            cursor: pointer;
+        }
+        .close-icon {
+            display: none;
+            font-size: 20px;  
+            position: absolute;
+            top: 30px;
+            right: 17.5px;
+            color: $first-color;
+            cursor: pointer;
+        }
+        ul.menu {
+            display: none;
+            background-color: rgba(87,46,229,0.90);;
+            height: 100vh;
+            padding-top: 10px;
+            position: fixed;
+            width: 100vw;
+            li {
+                height: 60px;
+                list-style: none;
+                font-family: $first-font;
+                font-size: 16px;
+                line-height: 28px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                a {
+                    color: $fifth-color;
+                    text-decoration: none;
+                    cursor: pointer;
+                    align-self: center;
+                    border-bottom: solid 1px;
+                }
+                i {
+                    display: none;
+                }
+            }
+            li:hover {
+                color: $first-color;
+                background-image: linear-gradient(to right, $fifth-color, $third-color);
+            }
+        }
+        }
+}
+
+@media only screen and (min-width: 600px) {
+     header {
+            nav {
+                height: 90px;
+                display: flex;
+                justify-content: space-between;
+                img {
+                    @include size(30px, 30px);
+                    margin: 0;
+                    padding-left: 140px;
+                    padding-top: 18px; 
+                }
+                .burguer-icon {
+                    display: none;
+                }
+                .close-icon {
+                    display: none;
+                }
+
+                ul.menu {
+                    display: flex;
+                    background-color: $fifth-color;
+                    height: 90px;
+                    padding-right: 156px;
+                    position: static;
+                    width: auto;
+                    li { 
+                        a {
+                            color: $first-color;
+                            margin: 25px;
+                            border: none;
+                        }
+                        a:hover {
+                            color: $fifth-color;
+                        }
+                        a:active {
+                            text-decoration: line-through;
+                        }
+                        i {
+                            display: block;
+                            color: $first-color;
+                        }
+                    }
+                    li:hover {
+                        background-image: none;
+                    }
+                }
+            }
+        }
 }

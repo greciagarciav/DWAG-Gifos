@@ -11,41 +11,49 @@
     <title>Gifos</title>
 </head>
 <body>
-    <header class="">
+    <header class="container">
         <nav> 
             <a href="/index.html"><img src="assets/logo-mobile.svg" alt="logo of web page"></a>
+            <input type="checkbox" id="menu-toggle">
+            <label class="burguer-icon" for="menu-toggle"><i class="fas fa-bars"></i></label>
+            <label class="close-icon" for="menu-toggle"><i class="fas fa-times"></i></label>
             <ul class="menu">
-                <li><a href="#">MODO NOCTURNO</a></li>
-                <li><a href="#">FAVORITOS</a> </li>
-                <li><a href="#">MIS GIFOS</a></li>
+                <li><a href="#">Modo Nocturno</a></li>
+                <li><a href="#">Favoritos</a> </li>
+                <li><a href="#">Mis GIFOS</a></li>
                 <li><i class="fas fa-plus-circle"></i></li>
             </ul>
         </nav>
     </header>
     <main>
         <section class="search">
-            <p>Inspírate, busca, guarda, y crea los mejores GIFOS</p>
             <div>
-                <img src="assets/ilustra_header.svg" alt="">
+                <p>Inspírate, busca, guarda, y crea los mejores <span>GIFOS</span></p>
                 <div>
+                    <img src="assets/ilustra_header.svg" alt="">
                     <div>
-                        <i class="fas fa-search"></i>
-                        <input type="text">
+                        <div>
+                            <input id="topic-gift" type="text" placeholder="Busca GIFOS y más">
+                            <i id="search-gift" class="fas fa-search"></i>
+                        </div>
+                        <ul></ul>
                     </div>
-                    <ul></ul>
                 </div>
             </div>
         </section>
         <section class="trending">
-            <p>Trending</p>
-            <ul>
-                <li><a href="">Reactions</a></li>
-                <li><a href="">Entertainment</a></li>
-                <li><a href="">Sports</a></li>
-                <li><a href="">Stickers</a></li>
-                <li><a href="">Artists</a></li>
-            </ul>
-            <div></div>
+            <div>
+                <p class="title">Trending:</p>
+                <p class="options">
+                    <span>Reactions,</span>
+                    <span>Entertainment,</span>
+                    <br>
+                    <span>Sports,</span>
+                    <span>Stickers,</span>
+                    <span>Artists</span>
+                </p>
+                <div class="results"></div>
+            </div> 
         </section>
         <section class="results">
             <p></p>
@@ -86,23 +94,19 @@
             </div>
         </section>
         <section class="gifcommunity">
-            <p>Trending GIFOS</p>
-            <p>Mira los últimos GIFO de nuestra comunidad</p>
             <div>
-                <a class="prev" href=""></a>
+                <p class="title">Trending GIFOS</p>
+                <p class="txt">Mira los últimos <br> GIFOS de nuestra comunidad</p>
                 <div>
-                    <div class="img-slide">
-                        <img src="assets/" alt="">
+                    <a class="prev" href=""></a>
+                    <div>
+                        <div class="img-slide">
+                            <img src="assets/" alt="">
+                        </div>
                     </div>
-                    <div class="img-slide">
-                        <img src="" alt="">
-                    </div>
-                    <div class="img-slide">
-                        <img src="" alt="">
-                    </div>
+                    <a class="next" href=""></a>
                 </div>
-                <a class="next" href=""></a>
-            </div>
+            </div>    
         </section>
         <section class="creategif">
             <div>
@@ -145,15 +149,15 @@
             <button>COMENZAR</button>
         </section>
     </main>
-    <footer class="">
-        <div class="">
-            <div class="">
-                <p>Compartir en:</p>
+    <footer>
+        <div class="ctn-footer">
+            <p class="share">Compartir en:</p>
+            <div class="social">
                 <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
                 <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a> 
             </div>
-            <p>© GIFOS 2020 All Rights Reserved</p>
+            <p>© GIFOS 2020 All Rights Reserved.</p>
         </div>
     </footer> 
 </body>

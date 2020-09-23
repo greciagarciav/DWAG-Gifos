@@ -15,9 +15,19 @@
 }
 
 body {
-
+    display: grid;
+    grid-template-columns: 100%;
 }
 
+header, footer {
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+main {
+    margin-top: 95px;
+    width: 100vw;
+}
 section {
 
 }
