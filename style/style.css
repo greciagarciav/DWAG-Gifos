@@ -171,20 +171,21 @@ section.trending {
   section.trending div {
     font-family: "Montserrat", sans-serif;
     color: #572EE5;
-    text-align: center; }
-    section.trending div p.title {
-      font-size: 18px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+  section.trending p.title {
+    font-size: 18px;
+    line-height: 25px;
+    padding-top: 31px; }
+  section.trending p.options {
+    padding-bottom: 35px;
+    width: 80%; }
+    section.trending p.options span {
+      font-size: 14px;
       line-height: 25px;
-      padding-top: 31px; }
-    section.trending div p.options {
-      padding-bottom: 35px; }
-      section.trending div p.options span {
-        font-size: 14px;
-        line-height: 25px;
-        list-style-type: none; }
-
-section.results {
-  display: none; }
+      list-style-type: none; }
 
 section.error {
   display: none; }
