@@ -164,6 +164,27 @@ section.search {
           font-family: "Roboto", sans-serif; }
         section.search div div div div i {
           color: #572EE5; }
+        section.search div div div div i#left-search-icon {
+          display: none;
+          color: #9CAFC3;
+          margin-right: 5px; }
+        section.search div div div div i.fa-search {
+          display: block;
+          margin-right: 10px; }
+        section.search div div div div i.fa-times {
+          display: none; }
+      section.search div div div ul {
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        width: 75%; }
+        section.search div div div ul li {
+          font-family: "Roboto", sans-serif;
+          font-size: 16px;
+          color: #9CAFC3;
+          text-align: left; }
+          section.search div div div ul li i {
+            margin-right: 5px; }
 
 section.trending {
   display: grid;

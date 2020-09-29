@@ -2,9 +2,11 @@ import { tempTrendOp, suggestionSearch, gifsResultSearch, tempGif } from './temp
 
 let data = [];
 const inputGift = document.getElementById('topic-gift');
-const searchButton = document.getElementById('search-gift');
 const optsTrend = document.getElementById('options');
 const suggestList = document.getElementById('suggest-list');
+const iLeftSearch = document.getElementById('left-search-icon');
+const iSearch = document.getElementById('search-icon');
+const iClean = document.getElementById('clean-icon');
 
 const urlSearch = 'https://api.giphy.com/v1/gifs/search?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
 const urlTrendingWords = 'https://api.giphy.com/v1/trending/searches?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
@@ -22,6 +24,13 @@ const sendApiRequest = async(url) => {
     return data;
 };
 
+const searchGifs = async (url, id) => {
+    const urlForSearch = urlGet(url, `=${id}&limit=12`);
+    data = await sendApiRequest(urlForSearch);
+    gifsResultSearch(id);
+    document.getElementById('root').innerHTML = tempGif(data);
+};
+
 const trendingWords = async () => {
     data = await sendApiRequest(urlTrendingWords);
     data.slice(-5).forEach((word) => {
@@ -29,11 +38,7 @@ const trendingWords = async () => {
     });
     optsTrend.addEventListener('click', async (event) => {
         const idItem = event.target.id;
-
-        const url = urlGet(urlSearch, `=${idItem}&limit=12`);
-        data = await sendApiRequest(url);
-        gifsResultSearch(idItem);
-        document.getElementById('root').innerHTML = tempGif(data);
+        searchGifs (urlSearch, idItem);
     });
 }
 
@@ -42,8 +47,15 @@ trendingWords();
 inputGift.addEventListener('keyup', async () => {
     suggestList.innerHTML = '';
     if(inputGift.value.length === 0) {
+        iLeftSearch.style.display = 'none';
+        iSearch.style.display = 'block';
+        iClean.style.display = 'none';
         return false;
     }
+
+    iLeftSearch.style.display = 'block';
+    iSearch.style.display = 'none';
+    iClean.style.display = 'block';
 
     const url = urlGet(urlSuggestSearch, `=${inputGift.value}`);
     data = await sendApiRequest(url);
@@ -52,10 +64,14 @@ inputGift.addEventListener('keyup', async () => {
     suggestList.addEventListener('click', async (event) => {
         const idItem = event.target.id;
         inputGift.value = idItem;
-        
-        const url = urlGet(urlSearch, `=${idItem}&limit=12`);
-        data = await sendApiRequest(url);
-        gifsResultSearch(inputGift.value);
-        document.getElementById('root').innerHTML = tempGif(data);
+        searchGifs (urlSearch, idItem);
     });
+});
+
+iClean.addEventListener('click', () =>{
+    inputGift.value = '';
+    suggestList.innerHTML = '';
+    iLeftSearch.style.display = 'none';
+    iSearch.style.display = 'block';
+    iClean.style.display = 'none';
 });

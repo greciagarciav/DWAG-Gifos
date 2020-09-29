@@ -43,9 +43,33 @@ section.search {
                 i {
                     color: $first-color;
                     }
+                i#left-search-icon {
+                    display: none;
+                    color: $third-color;
+                    margin-right: 5px;
+                }
+                i.fa-search {
+                    display: block;
+                    margin-right: 10px;
+                }
+                i.fa-times {
+                    display: none;
+                }
                 }
                ul {
-
+                    list-style-type: none;
+                    display: flex;
+                    flex-direction: column;
+                    width: 75%;
+                    li {
+                        font-family: $second-font;
+                        font-size: 16px;
+                        color:$third-color;
+                        text-align: left;
+                        i {
+                            margin-right: 5px;
+                        }
+                    }
                }
             }
         }

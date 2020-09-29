@@ -6,10 +6,16 @@ export const tempTrendOp = (trendWord) => {
 
 export const suggestionSearch = (dataSuggestion, ulList) => {
     dataSuggestion.forEach((suggestion) => {
+        const searchIcon = document.createElement('i');
+        searchIcon.setAttribute("class", "fas fa-search");
+
         const liSuggestion = document.createElement('li');
         liSuggestion.setAttribute("id", suggestion.name);
+        liSuggestion.setAttribute("class", "suggestion");
 
         const txtSuggestion = document.createTextNode(suggestion.name);
+        
+        liSuggestion.appendChild(searchIcon);
         liSuggestion.appendChild(txtSuggestion);
         ulList.appendChild(liSuggestion);
     });
