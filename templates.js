@@ -8,6 +8,7 @@ export const suggestionSearch = (dataSuggestion, ulList) => {
     dataSuggestion.forEach((suggestion) => {
         const searchIcon = document.createElement('i');
         searchIcon.setAttribute("class", "fas fa-search");
+        searchIcon.setAttribute("id", suggestion.name);
 
         const liSuggestion = document.createElement('li');
         liSuggestion.setAttribute("id", suggestion.name);
@@ -25,18 +26,18 @@ export const tempGif = (data) => {
     let temp = '';
     data.forEach((gif) => {
         temp += `
-        <div id="${gif.id}">
-            <img src="${gif.images.original.url}" alt="${gif.title}">
-            <div class="card">
+        <div class="ctn-gif" id="${gif.id}">
+            <img class="img-gif" src="${gif.images.original.url}" alt="${gif.title}">
+            <div class="overlay">
                 <div class="group-icons">
-                    <div id="${gif.id}-remove" class="icons icon-delete"></div>
-                    <div id="${gif.id}-add" class="icons icon-heart"></div>
-                    <div id="${gif.id}-download" class="icons icon-download"></div>
-                    <div id="${gif.id}-max" class="icons icon-max"></div>
+                    <div class="icon"><i ${gif.id} class="far fa-trash-alt"></i></div>
+                    <div class="icon"><i ${gif.id} class="far fa-heart"></i></div>
+                    <div class="icon"><i ${gif.id} class="fas fa-download"></i></div>
+                    <div class="icon"><i ${gif.id} class="fas fa-expand-alt"></i></div>
                 </div>
                 <div class="text-card">
-                    <div class="text-card-user">${gif.username !== '' ? gif.username : 'User' }</div>
-                    <h3 class="text-card-title">${gif.title}</h3>
+                    <p class="text-user">${gif.username !== '' ? gif.username : 'User' }</p>
+                    <p class="text-gift">${gif.title}</p>
                 </div>
             </div>
         </div>`;
@@ -46,20 +47,25 @@ export const tempGif = (data) => {
 
 export const gifsResultSearch = (inputSearch) => {
     const sectResults = document.getElementById('stc-results');
+    sectResults.innerHTML = '';
     const divResults = document.createElement('div');
+    divResults.setAttribute("class", "ctn-results");
     sectResults.appendChild(divResults);
 
     const pResults = document.createElement('p');
+    pResults.setAttribute("class", "title-results");
     const titleResult = document.createTextNode(inputSearch);
     pResults.appendChild(titleResult);
     divResults.appendChild(pResults);
 
     const divResultGifs = document.createElement('div');
     divResultGifs.setAttribute("id", "root");
+    divResultGifs.setAttribute("class", "root");
     divResults.appendChild(divResultGifs);
 
     const btnMore = document.createElement('button');
     btnMore.setAttribute("id", "see-more");
+    btnMore.setAttribute("class", "see-more");
     btnMore.textContent = 'VER MÁS';
     divResults.appendChild(btnMore);
 };
