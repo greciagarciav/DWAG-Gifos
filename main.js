@@ -7,6 +7,7 @@ const suggestList = document.getElementById('suggest-list');
 const iLeftSearch = document.getElementById('left-search-icon');
 const iSearch = document.getElementById('search-icon');
 const iClean = document.getElementById('clean-icon');
+const resultsSection = document.getElementById('stc-results');
 
 const urlSearch = 'https://api.giphy.com/v1/gifs/search?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
 const urlTrendingWords = 'https://api.giphy.com/v1/trending/searches?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
@@ -37,6 +38,7 @@ const trendingWords = async () => {
         optsTrend.innerHTML += tempTrendOp(word) + ', '
     });
     optsTrend.addEventListener('click', async (event) => {
+        resultsSection.innerHTML = '';
         const idItem = event.target.id;
         searchGifs (urlSearch, idItem);
     });
@@ -46,7 +48,7 @@ trendingWords();
 
 inputGift.addEventListener('keyup', async () => {
     suggestList.innerHTML = '';
-    if(inputGift.value.length === 0) {
+    if (inputGift.value.length === 0) {
         iLeftSearch.style.display = 'none';
         iSearch.style.display = 'block';
         iClean.style.display = 'none';
@@ -62,10 +64,22 @@ inputGift.addEventListener('keyup', async () => {
     suggestionSearch(data, suggestList);
 
     suggestList.addEventListener('click', async (event) => {
+        resultsSection.innerHTML = '';
         const idItem = event.target.id;
         inputGift.value = idItem;
         searchGifs (urlSearch, idItem);
+        suggestList.innerHTML = '';
     });
+});
+
+inputGift.addEventListener('keypress', async (event) =>{
+    suggestList.innerHTML = '';
+    if (inputGift.value.length === 0) {
+        return false;
+    } else if (event.key === 'Enter') {
+        resultsSection.innerHTML = '';
+        searchGifs (urlSearch, inputGift.value);
+    }
 });
 
 iClean.addEventListener('click', () =>{
