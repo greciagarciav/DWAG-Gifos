@@ -15,11 +15,12 @@ input[type="checkbox"]:checked~.close-icon{
 }
 
 header {
+    width: 100%;
     background-color: $fifth-color;
     border-top: solid 5px $first-color;
     position: fixed;
-    // top: 0;
-    // z-index: 999;
+    top: 0;
+    z-index: 999;
     nav {
         width: 100vw;
         height: 95px;

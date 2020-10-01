@@ -1,6 +1,6 @@
 section.search {
    display: grid;
-   grid-template-columns: 100%;
+   width: 100%;
    div {
     display: flex;
     flex-direction: column;
@@ -77,6 +77,7 @@ section.search {
 }
 
 section.trending {
+    width: 100%;
     display: grid;
     grid-template-columns: 100%;
   div {
@@ -86,7 +87,7 @@ section.trending {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+    }
     p.title {
         font-size: 18px;
         line-height: 25px;
@@ -102,28 +103,125 @@ section.trending {
             list-style-type: none;
         }
     }
-    div.results {
-
-    }
   }
 
 
 section.results {
+    width: 100%;
+    div.ctn-results {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        p.title-results {
+            font-family: $first-font;
+            font-size: 25px;
+            color: $first-color;
+            text-align: center;
+            line-height: 40px;
+            text-transform: capitalize;
+        }
+        div.root {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 10.5px;
+            grid-template-rows: 132.5px 132.5px 132.5px 132.5px 132.5px 132.5px;
+            grid-row-gap: 10.5px;
+            padding: 10px;
+            div.ctn-gif {
+            width: 100%;
+            position: relative;
+                img.img-gif {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                }
+                div.overlay {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    height: 100%;
+                    width: 100%;
+                    opacity: 0;
+                    transition: .5s ease;
+                    background-color: $first-color;
+                    div.group-icons {
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        display: flex;
+                        padding-right: 2.5px;
+                        div.icon {
+                            opacity: 0.7;
+                            background: $fifth-color;
+                            width: 20px;
+                            height: 20px;
+                            margin: 5px 2.5px;
+                            border-radius: 6px;
+                            i {
+                                color: $first-color;
+                                margin-left: 4.5px;
+                                font-size: 12px;
+                            }
+                        }
+                        div.icon:hover {
+                            opacity: 1;
+                        }
+                    }
+                    div.text-card {
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        p.text-user {
+                            font-family: $second-font;
+                            font-size: 14px;
+                            color: $fifth-color;
+                            padding-left: 12px;
+                        }
+                        p.text-gift {
+                            font-family: $second-font;
+                            font-size: 15px;
+                            color: $fifth-color;
+                            padding-left: 12px;
+                            padding-bottom: 5px;
+                            width: 80%;
+                        }
+                    } 
+                }
+
+            }
+            div.ctn-gif:hover div.overlay {
+                opacity: 0.7;
+            }
+        }
+        button.see-more {
+            color: $first-color;
+            background-color: $fifth-color;
+            margin-top: 45px;
+            margin-bottom: 45px;
+            font-weight: 600;
+        }
+    }
 }
 
 section.error {
+    width: 100%;
     display: none;
 }
 
 section.favorites {
+    width: 100%;
     display: none;
 }
 
 section.mygifos {
+    width: 100%;
     display: none;
 }
 
 section.gifcommunity {
+    width: 100%;
    div {
        display: flex;
        align-items: center;
@@ -162,5 +260,6 @@ section.gifcommunity {
 }
 
 section.creategif {
+    width: 100%;
     display: none;
 }
