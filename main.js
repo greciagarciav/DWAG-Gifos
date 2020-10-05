@@ -26,7 +26,7 @@ const sendApiRequest = async(url) => {
 };
 
 const searchGifs = async (url, id) => {
-    const urlForSearch = urlGet(url, `=${id}&limit=12`);
+    const urlForSearch = urlGet(url, `=${id}`);
     data = await sendApiRequest(urlForSearch);
     gifsResultSearch(id);
     document.getElementById('root').innerHTML = tempGif(data);
