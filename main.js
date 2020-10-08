@@ -1,4 +1,4 @@
-import { tempTrendOp, suggestionSearch, gifsResultSearch, tempGif } from './templates.js'
+import { tempTrendOp, suggestionSearch, gifsResultSearch, tempGif, viewNoResults } from './templates.js'
 
 let data = [];
 const inputGift = document.getElementById('topic-gift');
@@ -13,8 +13,8 @@ const urlSearch = 'https://api.giphy.com/v1/gifs/search?api_key=xRw1K9iEL7bkhCbl
 const urlTrendingWords = 'https://api.giphy.com/v1/trending/searches?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
 const urlSuggestSearch = 'https://api.giphy.com/v1/gifs/search/tags?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
 
-const urlGet = (url, input) => {
-    const result = url + input;
+const urlGet = (url, input, limit, offset) => {
+    const result = url + input + limit + offset;
     return result;
 };
 
@@ -25,22 +25,42 @@ const sendApiRequest = async(url) => {
     return data;
 };
 
-const searchGifs = async (url, id) => {
-    const urlForSearch = urlGet(url, `=${id}`);
+const searchGifs = async (url, id, limit, offset) => {
+    const urlForSearch = urlGet(url, `=${id}`, `&limit=${limit}`, `&offset=${offset}`);
     data = await sendApiRequest(urlForSearch);
     gifsResultSearch(id);
-    document.getElementById('root').innerHTML = tempGif(data);
+    
+    const root = document.getElementById('root');
+    if (data.length !== 0) {
+        root.innerHTML = tempGif(data);
+        const btnSeeMore = document.getElementById('see-more');
+        btnSeeMore.addEventListener('click', () => {
+            seeMore(url, id);
+        });
+    } else {
+        document.getElementById('root').innerHTML = viewNoResults;
+        document.getElementById('root').style.display = 'block';
+        document.querySelector('.see-more').style.display = 'none';
+    }
+};
+
+let offset = 12;
+const seeMore = (url, inputSearch) => {
+    const limit = 12;
+    offset = offset + 12;
+    searchGifs(url, inputSearch, limit, offset);
 };
 
 const trendingWords = async () => {
     data = await sendApiRequest(urlTrendingWords);
     data.slice(-5).forEach((word) => {
-        optsTrend.innerHTML += tempTrendOp(word) + ', '
+        optsTrend.innerHTML += tempTrendOp(word) + ', ';
     });
     optsTrend.addEventListener('click', async (event) => {
         resultsSection.innerHTML = '';
+        inputGift.value = '';
         const idItem = event.target.id;
-        searchGifs (urlSearch, idItem);
+        searchGifs (urlSearch, idItem, 12, 0);
     });
 }
 
@@ -67,8 +87,7 @@ inputGift.addEventListener('keyup', async () => {
         resultsSection.innerHTML = '';
         const idItem = event.target.id;
         inputGift.value = idItem;
-        searchGifs (urlSearch, idItem);
-        suggestList.innerHTML = '';
+        searchGifs (urlSearch, idItem, 12, 0);
     });
 });
 
@@ -78,7 +97,7 @@ inputGift.addEventListener('keypress', async (event) =>{
         return false;
     } else if (event.key === 'Enter') {
         resultsSection.innerHTML = '';
-        searchGifs (urlSearch, inputGift.value);
+        searchGifs (urlSearch, inputGift.value, 12, 0);
     }
 });
 
@@ -89,3 +108,4 @@ iClean.addEventListener('click', () =>{
     iSearch.style.display = 'block';
     iClean.style.display = 'none';
 });
+

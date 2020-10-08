@@ -127,6 +127,19 @@ section.results {
             grid-template-rows: 132.5px 132.5px 132.5px 132.5px 132.5px 132.5px;
             grid-row-gap: 10.5px;
             padding: 10px;
+            div.error-results {
+                display: flex;
+                flex-direction: column;
+                padding: 20px 10%;
+                text-align: center;
+                p {
+                    font-size: 22px;
+                    font-family: $first-font;
+                    color: $seventh-color;
+                    line-height: 25px;
+                    font-weight: 700;
+                }
+            }
             div.ctn-gif {
             width: 100%;
             position: relative;

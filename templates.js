@@ -45,6 +45,23 @@ export const tempGif = (data) => {
     return temp;
 };
 
+export const pagination = (size) => {
+    const nPages = size/12;
+    let temp = '';
+
+    for (let i = 0; i <= nPages; i++ ) {
+        if (i == 0) {
+            temp += `
+            <a offset=${i}>${i + 1}</a>
+            `;
+        } else {
+            temp += `
+            <a offset=${i + 12}>${i + 1}</a>
+            `;
+        }
+    } 
+};
+
 export const gifsResultSearch = (inputSearch) => {
     const sectResults = document.getElementById('stc-results');
     sectResults.innerHTML = '';
@@ -69,3 +86,12 @@ export const gifsResultSearch = (inputSearch) => {
     btnMore.textContent = 'VER MÁS';
     divResults.appendChild(btnMore);
 };
+
+export const viewNoResults = `
+      <div class="error-results">
+          <img src="assets/icon-busqueda-sin-resultado.svg" alt="Busqueda-sin-resultados"><br><br>
+          <p>Intenta con otra búsqueda.</p><br>
+      </div>
+  `
+;
+
