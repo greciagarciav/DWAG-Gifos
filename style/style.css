@@ -4,7 +4,10 @@
   border: 0; }
 
 body {
-  width: 100%; }
+  width: 100%;
+  transition: .3s ease all; }
+  body.dark {
+    background-color: #37383C; }
 
 header, footer {
   grid-column-start: 1;
@@ -42,6 +45,9 @@ header {
   position: fixed;
   top: 0;
   z-index: 999; }
+  body.dark header {
+    background-color: #37383C;
+    border-top: solid 5px #000000; }
   header nav {
     width: 100vw;
     height: 95px;
@@ -58,6 +64,8 @@ header {
       right: 16px;
       color: #572EE5;
       cursor: pointer; }
+      body.dark header nav .burguer-icon {
+        color: #FFFFFF; }
     header nav .close-icon {
       display: none;
       font-size: 20px;
@@ -66,13 +74,16 @@ header {
       right: 17.5px;
       color: #572EE5;
       cursor: pointer; }
+      body.dark header nav .close-icon {
+        color: #FFFFFF; }
     header nav ul.menu {
       display: none;
       background-color: rgba(87, 46, 229, 0.9);
       height: 100vh;
-      padding-top: 10px;
       position: fixed;
       width: 100vw; }
+      body.dark header nav ul.menu {
+        background-color: #000000; }
       header nav ul.menu li {
         height: 60px;
         list-style: none;
@@ -89,7 +100,9 @@ header {
           align-self: center;
           border-bottom: solid 1px; }
         header nav ul.menu li i {
-          display: none; }
+          display: none;
+          font-size: 30px;
+          cursor: pointer; }
       header nav ul.menu li:hover {
         color: #572EE5;
         background-image: linear-gradient(to right, #FFFFFF, #9CAFC3); }
@@ -100,8 +113,8 @@ header {
     display: flex;
     justify-content: space-between; }
     header nav img {
-      width: 30px;
-      height: 30px;
+      width: 50px;
+      height: 50px;
       margin: 0;
       padding-left: 140px;
       padding-top: 18px; }
@@ -116,17 +129,26 @@ header {
       padding-right: 156px;
       position: static;
       width: auto; }
+      body.dark header nav ul.menu {
+        background-color: #37383C; }
       header nav ul.menu li a {
         color: #572EE5;
         margin: 25px;
-        border: none; }
+        border: none;
+        text-transform: uppercase; }
+        body.dark header nav ul.menu li a {
+          color: #FFFFFF; }
       header nav ul.menu li a:hover {
-        color: #FFFFFF; }
+        border-bottom: 2px solid #5ED7C6; }
       header nav ul.menu li a:active {
         text-decoration: line-through; }
       header nav ul.menu li i {
         display: block;
         color: #572EE5; }
+        body.dark header nav ul.menu li i {
+          color: #FFFFFF; }
+      header nav ul.menu li i:hover {
+        color: #5ED7C6; }
       header nav ul.menu li:hover {
         background-image: none; } }
 section.search {
@@ -145,48 +167,56 @@ section.search {
       align-self: center;
       line-height: 33px;
       padding-top: 7px; }
+      body.dark section.search div p {
+        color: #FFFFFF; }
       section.search div p span {
         color: #5ED7C6; }
     section.search div div img {
       width: 85%;
       height: 130px;
       padding-top: 33px; }
-    section.search div div div {
+    section.search div div div.ctn-search {
       width: 90%;
       border: solid 1px #572EE5;
       border-radius: 27px; }
-      section.search div div div div {
+      body.dark section.search div div div.ctn-search {
+        border: solid 1px #FFFFFF; }
+      section.search div div div.ctn-search div {
         display: flex;
         flex-direction: row;
         height: 50px;
         border: none;
         justify-content: center; }
-        section.search div div div div input {
+        section.search div div div.ctn-search div input {
           height: 22px;
           width: 215px;
           font-family: "Roboto", sans-serif; }
-        section.search div div div div i {
+          body.dark section.search div div div.ctn-search div input {
+            background-color: #37383C; }
+        section.search div div div.ctn-search div i {
           color: #572EE5; }
-        section.search div div div div i#left-search-icon {
+          body.dark section.search div div div.ctn-search div i {
+            color: #FFFFFF; }
+        section.search div div div.ctn-search div i#left-search-icon {
           display: none;
           color: #9CAFC3;
           margin-right: 5px; }
-        section.search div div div div i.fa-search {
+        section.search div div div.ctn-search div i.fa-search {
           display: block;
           margin-right: 10px; }
-        section.search div div div div i.fa-times {
+        section.search div div div.ctn-search div i.fa-times {
           display: none; }
-      section.search div div div ul {
+      section.search div div div.ctn-search ul {
         list-style-type: none;
         display: flex;
         flex-direction: column;
         width: 75%; }
-        section.search div div div ul li {
+        section.search div div div.ctn-search ul li {
           font-family: "Roboto", sans-serif;
           font-size: 16px;
           color: #9CAFC3;
           text-align: left; }
-          section.search div div div ul li i {
+          section.search div div div.ctn-search ul li i {
             margin-right: 5px; }
 
 section.trending {
@@ -200,6 +230,8 @@ section.trending {
     display: flex;
     flex-direction: column;
     align-items: center; }
+    body.dark section.trending div {
+      color: #FFFFFF; }
   section.trending p.title {
     font-size: 18px;
     line-height: 25px;
@@ -225,6 +257,8 @@ section.results {
       text-align: center;
       line-height: 40px;
       text-transform: capitalize; }
+      body.dark section.results div.ctn-results p.title-results {
+        color: #FFFFFF; }
     section.results div.ctn-results div.root {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -327,17 +361,23 @@ section.gifcommunity {
     font-family: "Montserrat", sans-serif;
     background-color: #F3F5F8;
     height: 430px; }
+    body.dark section.gifcommunity div {
+      background-color: #222326; }
     section.gifcommunity div p.title {
       font-size: 20px;
       color: #572EE5;
       line-height: 30px;
       padding-top: 46px; }
+      body.dark section.gifcommunity div p.title {
+        color: #FFFFFF; }
     section.gifcommunity div p.txt {
       font-size: 16px;
       color: #000000;
       line-height: 23px;
       padding-top: 7px;
       font-family: "Roboto", sans-serif; }
+      body.dark section.gifcommunity div p.txt {
+        color: #FFFFFF; }
     section.gifcommunity div div a {
       display: none; }
 
@@ -348,6 +388,8 @@ section.creategif {
 footer {
   width: 100%;
   border-bottom: solid 5px #572EE5; }
+  body.dark footer {
+    border-bottom: solid 5px #000000; }
   footer div.ctn-footer {
     font-family: "Roboto", sans-serif;
     color: #000000;
@@ -356,6 +398,8 @@ footer {
     flex-direction: column;
     align-items: center;
     height: 196px; }
+    body.dark footer div.ctn-footer {
+      color: #FFFFFF; }
     footer div.ctn-footer p.share {
       font-size: 15px;
       padding-top: 47px;

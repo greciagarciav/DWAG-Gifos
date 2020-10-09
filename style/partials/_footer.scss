@@ -1,6 +1,9 @@
 footer {
     width: 100%;
     border-bottom: solid 5px $first-color;
+    body.dark & {
+        border-bottom: solid 5px $fourth-color;
+        }
   div.ctn-footer {
     font-family: $second-font;
     color: $fourth-color;
@@ -8,7 +11,10 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;  
-    height: 196px;  
+    height: 196px; 
+    body.dark & {
+        color: $fifth-color;
+        } 
         p.share {
             font-size: 15px;
             padding-top: 47px;

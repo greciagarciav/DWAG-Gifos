@@ -16,6 +16,10 @@
 
 body {
     width: 100%;
+    transition: .3s ease all;
+    &.dark{
+        background-color: $nineth-color;
+    }
 }
 
 header, footer {
@@ -27,6 +31,7 @@ main {
     margin-top: 95px;
     width: 100%;
 }
+
 section {
 
 }
@@ -61,3 +66,5 @@ button {
     border: 1px solid $first-color;
     border-radius: 25px;
 }
+
+// dark mode

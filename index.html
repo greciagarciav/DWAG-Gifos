@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style/style.css">
     <title>Gifos</title>
 </head>
-<body>
+<body class="">
     <header class="container">
         <nav> 
             <a href="/index.html"><img src="assets/logo-mobile.svg" alt="logo of web page"></a>
@@ -18,10 +18,10 @@
             <label class="burguer-icon" for="menu-toggle"><i class="fas fa-bars"></i></label>
             <label class="close-icon" for="menu-toggle"><i class="fas fa-times"></i></label>
             <ul class="menu">
-                <li><a href="#">Modo Nocturno</a></li>
-                <li><a href="#">Favoritos</a> </li>
-                <li><a href="#">Mis GIFOS</a></li>
-                <li><i class="fas fa-plus-circle"></i></li>
+                <li id="mode"><a href="#">Modo <span>Nocturno</span><span id="day-mode">Diurno</span></a></li>
+                <li id="fav"><a href="#">Favoritos</a> </li>
+                <li id="my-gifs"><a href="#">Mis GIFOS</a></li>
+                <li id="create-gif"><i class="fas fa-plus-circle"></i></li>
             </ul>
         </nav>
     </header>
@@ -31,7 +31,7 @@
                 <p>Inspírate, busca, guarda, y crea los mejores <span>GIFOS</span></p>
                 <div>
                     <img src="assets/ilustra_header.svg" alt="">
-                    <div>
+                    <div class="ctn-search">
                         <div>
                             <i id="left-search-icon" class="fas fa-search"></i>
                             <input id="topic-gift" type="text" placeholder="Busca GIFOS y más">

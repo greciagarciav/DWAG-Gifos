@@ -8,6 +8,7 @@ const iLeftSearch = document.getElementById('left-search-icon');
 const iSearch = document.getElementById('search-icon');
 const iClean = document.getElementById('clean-icon');
 const resultsSection = document.getElementById('stc-results');
+const btnMode = document.getElementById('mode');
 
 const urlSearch = 'https://api.giphy.com/v1/gifs/search?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
 const urlTrendingWords = 'https://api.giphy.com/v1/trending/searches?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
@@ -108,4 +109,21 @@ iClean.addEventListener('click', () =>{
     iSearch.style.display = 'block';
     iClean.style.display = 'none';
 });
+
+// dark mode
+btnMode.addEventListener('click', () =>{
+    document.body.classList.toggle('dark');
+
+    if(document.body.classList.contains('dark')) {
+		localStorage.setItem('dark-mode', 'true');
+	} else {
+		localStorage.setItem('dark-mode', 'false');
+	}
+});
+
+if (localStorage.getItem('dark-mode') === 'true') {
+	document.body.classList.add('dark');
+} else {
+	document.body.classList.remove('dark');
+}
 

@@ -21,6 +21,11 @@ header {
     position: fixed;
     top: 0;
     z-index: 999;
+    
+    body.dark & {
+        background-color: $nineth-color;
+        border-top: solid 5px $fourth-color;
+        }
     nav {
         width: 100vw;
         height: 95px;
@@ -37,6 +42,9 @@ header {
             right: 16px;
             color: $first-color;
             cursor: pointer;
+            body.dark & {
+                color: $fifth-color;
+                }
         }
         .close-icon {
             display: none;
@@ -46,14 +54,19 @@ header {
             right: 17.5px;
             color: $first-color;
             cursor: pointer;
+            body.dark & {
+                color: $fifth-color;
+                }
         }
         ul.menu {
             display: none;
             background-color: rgba(87,46,229,0.90);;
             height: 100vh;
-            padding-top: 10px;
             position: fixed;
             width: 100vw;
+            body.dark & {
+                background-color: $fourth-color;
+                }
             li {
                 height: 60px;
                 list-style: none;
@@ -72,6 +85,8 @@ header {
                 }
                 i {
                     display: none;
+                    font-size: 30px;
+                    cursor: pointer;
                 }
             }
             li:hover {
@@ -89,7 +104,7 @@ header {
                 display: flex;
                 justify-content: space-between;
                 img {
-                    @include size(30px, 30px);
+                    @include size(50px, 50px);
                     margin: 0;
                     padding-left: 140px;
                     padding-top: 18px; 
@@ -108,14 +123,21 @@ header {
                     padding-right: 156px;
                     position: static;
                     width: auto;
+                    body.dark & {
+                        background-color: $nineth-color;
+                        }
                     li { 
                         a {
                             color: $first-color;
                             margin: 25px;
                             border: none;
+                            text-transform: uppercase;
+                            body.dark & {
+                                color: $fifth-color;
+                                }
                         }
                         a:hover {
-                            color: $fifth-color;
+                            border-bottom: 2px solid $second-color;
                         }
                         a:active {
                             text-decoration: line-through;
@@ -123,6 +145,12 @@ header {
                         i {
                             display: block;
                             color: $first-color;
+                            body.dark & {
+                                color: $fifth-color;
+                                }
+                        }
+                        i:hover {
+                            color: $second-color;
                         }
                     }
                     li:hover {

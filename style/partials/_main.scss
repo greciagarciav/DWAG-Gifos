@@ -14,6 +14,9 @@ section.search {
             align-self: center;
             line-height: 33px;
             padding-top: 7px;
+            body.dark & {
+                color: $fifth-color;
+                }
             span {
                 color: $second-color;
             }
@@ -25,10 +28,13 @@ section.search {
                 height: 130px;
                 padding-top: 33px;
             }
-            div {
+            div.ctn-search {
                 width: 90%;
                 border: solid 1px $first-color;
                 border-radius: 27px;
+                body.dark & {
+                    border: solid 1px $fifth-color;
+                    }
                div {
                 display: flex;
                 flex-direction: row;
@@ -39,9 +45,15 @@ section.search {
                     height: 22px;
                     width: 215px;
                     font-family: $second-font;
+                    body.dark & {
+                        background-color: $nineth-color;
+                        }
                 }
                 i {
                     color: $first-color;
+                    body.dark & {
+                        color: $fifth-color;
+                        }
                     }
                 i#left-search-icon {
                     display: none;
@@ -51,6 +63,7 @@ section.search {
                 i.fa-search {
                     display: block;
                     margin-right: 10px;
+
                 }
                 i.fa-times {
                     display: none;
@@ -87,6 +100,11 @@ section.trending {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    body.dark & {
+        color: $fifth-color;
+        }
+
     }
     p.title {
         font-size: 18px;
@@ -119,6 +137,9 @@ section.results {
             text-align: center;
             line-height: 40px;
             text-transform: capitalize;
+            body.dark & {
+                color: $fifth-color;
+                }
         }
         div.root {
             display: grid;
@@ -235,6 +256,8 @@ section.mygifos {
 
 section.gifcommunity {
     width: 100%;
+
+    
    div {
        display: flex;
        align-items: center;
@@ -243,11 +266,17 @@ section.gifcommunity {
        font-family: $first-font;
        background-color: $eleventh-color;
        height: 430px;
+       body.dark & {
+        background-color: $eight-color;
+        }
        p.title {
         font-size: 20px;
         color: $first-color;
         line-height: 30px;
         padding-top: 46px;
+        body.dark & {
+            color: $fifth-color;
+            }
        }
        p.txt {
         font-size: 16px;
@@ -255,6 +284,9 @@ section.gifcommunity {
         line-height: 23px;
         padding-top: 7px;
         font-family: $second-font;
+        body.dark & {
+            color: $fifth-color;
+            }
        }
        div {
            a {
