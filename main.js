@@ -80,7 +80,7 @@ inputGift.addEventListener('keyup', async () => {
     iSearch.style.display = 'none';
     iClean.style.display = 'block';
 
-    const url = urlGet(urlSuggestSearch, `=${inputGift.value}`);
+    const url = urlSuggestSearch + `=${inputGift.value}`;
     data = await sendApiRequest(url);
     suggestionSearch(data, suggestList);
 
@@ -111,19 +111,30 @@ iClean.addEventListener('click', () =>{
 });
 
 // dark mode
+const darkM = document.getElementById('dark-mode');
+const dayM = document.getElementById('day-mode');
+
 btnMode.addEventListener('click', () =>{
     document.body.classList.toggle('dark');
 
     if(document.body.classList.contains('dark')) {
-		localStorage.setItem('dark-mode', 'true');
+        localStorage.setItem('dark-mode', 'true');
+        dayM.style.display = 'block';
+        darkM.style.display = 'none';
 	} else {
-		localStorage.setItem('dark-mode', 'false');
+        localStorage.setItem('dark-mode', 'false');
+        dayM.style.display = 'none'; 
+        darkM.style.display = 'block';
 	}
 });
 
 if (localStorage.getItem('dark-mode') === 'true') {
-	document.body.classList.add('dark');
+    document.body.classList.add('dark');
+    dayM.style.display = 'block';
+    darkM.style.display = 'none';
 } else {
-	document.body.classList.remove('dark');
+    document.body.classList.remove('dark');
+    dayM.style.display = 'none'; 
+    darkM.style.display = 'block';
 }
 
