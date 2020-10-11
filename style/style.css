@@ -383,7 +383,7 @@ section.favorites, section.mygifos {
 
 section.gifcommunity {
   width: 100%; }
-  section.gifcommunity div {
+  section.gifcommunity div.ctn-gifcomm {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -391,25 +391,58 @@ section.gifcommunity {
     font-family: "Montserrat", sans-serif;
     background-color: #F3F5F8;
     height: 430px; }
-    body.dark section.gifcommunity div {
+    body.dark section.gifcommunity div.ctn-gifcomm {
       background-color: #222326; }
-    section.gifcommunity div p.title {
+    section.gifcommunity div.ctn-gifcomm p.title {
       font-size: 20px;
       color: #572EE5;
       line-height: 30px;
       padding-top: 46px; }
-      body.dark section.gifcommunity div p.title {
+      body.dark section.gifcommunity div.ctn-gifcomm p.title {
         color: #FFFFFF; }
-    section.gifcommunity div p.txt {
+    section.gifcommunity div.ctn-gifcomm p.txt {
       font-size: 16px;
       color: #000000;
       line-height: 23px;
       padding-top: 7px;
       font-family: "Roboto", sans-serif; }
-      body.dark section.gifcommunity div p.txt {
+      body.dark section.gifcommunity div.ctn-gifcomm p.txt {
         color: #FFFFFF; }
-    section.gifcommunity div div a {
-      display: none; }
+    section.gifcommunity div.ctn-gifcomm div.mainctn-gifs {
+      width: 100%; }
+      section.gifcommunity div.ctn-gifcomm div.mainctn-gifs i.ic {
+        position: absolute;
+        z-index: 4;
+        width: 48px;
+        height: 48px;
+        text-align: center;
+        border: 1px solid #572EE5;
+        cursor: pointer;
+        background-color: #F3F5F8;
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+      section.gifcommunity div.ctn-gifcomm div.mainctn-gifs i.prev {
+        left: 1%;
+        transform: translateY(280%); }
+      section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs {
+        position: relative;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        width: fit-content;
+        height: 304px;
+        padding: 10px 0;
+        margin: 0px auto;
+        max-width: 90vw;
+        overflow-x: scroll;
+        scroll-behavior: smooth;
+        top: 0;
+        -webkit-box-pack: center;
+        transition: .5s ease-in-out; }
+      section.gifcommunity div.ctn-gifcomm div.mainctn-gifs i.next {
+        right: 1%;
+        transform: translateY(-370%); }
 
 section.creategif {
   width: 100%;

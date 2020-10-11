@@ -13,6 +13,7 @@ const btnMode = document.getElementById('mode');
 const urlSearch = 'https://api.giphy.com/v1/gifs/search?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
 const urlTrendingWords = 'https://api.giphy.com/v1/trending/searches?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
 const urlSuggestSearch = 'https://api.giphy.com/v1/gifs/search/tags?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
+const urlTrendGifs = 'https://api.giphy.com/v1/gifs/trending?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
 
 const urlGet = (url, input, limit, offset) => {
     const result = url + input + limit + offset;
@@ -63,9 +64,16 @@ const trendingWords = async () => {
         const idItem = event.target.id;
         searchGifs (urlSearch, idItem, 12, 0);
     });
-}
+};
+
+const trendingGifs = async () => {
+    const ctnGifs = document.getElementById('ctn-gifs');
+    data = await sendApiRequest(urlTrendGifs + '&limit=12&rating=g');
+    ctnGifs.innerHTML = tempGif(data);
+};
 
 trendingWords();
+trendingGifs();
 
 inputGift.addEventListener('keyup', async () => {
     suggestList.innerHTML = '';
