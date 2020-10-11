@@ -89,6 +89,7 @@ inputGift.addEventListener('keyup', async () => {
         const idItem = event.target.id;
         inputGift.value = idItem;
         searchGifs (urlSearch, idItem, 12, 0);
+        suggestList.innerHTML = '';
     });
 });
 
@@ -99,6 +100,7 @@ inputGift.addEventListener('keypress', async (event) =>{
     } else if (event.key === 'Enter') {
         resultsSection.innerHTML = '';
         searchGifs (urlSearch, inputGift.value, 12, 0);
+        suggestList.innerHTML = '';
     }
 });
 
@@ -136,5 +138,31 @@ if (localStorage.getItem('dark-mode') === 'true') {
     document.body.classList.remove('dark');
     dayM.style.display = 'none'; 
     darkM.style.display = 'block';
-}
+};
 
+// favorites
+const favs = document.getElementById('fav');
+const stcSearch = document.getElementById('stc-search');
+const stcTrending = document.getElementById('stc-trending');
+const stcResults = document.getElementById('stc-results');
+const stcFavs = document.getElementById('stc-favs');
+
+favs.addEventListener('click', () => {
+    stcSearch.style.display = 'none';
+    stcTrending.style.display = 'none';
+    stcResults.style.display = 'none';
+    stcMygifos.style.display = 'none';
+    stcFavs.style.display = 'block';
+});
+
+// my gifos
+const myGifos = document.getElementById('my-gifs');
+const stcMygifos = document.getElementById('stc-mygifos');
+
+myGifos.addEventListener('click', () => {
+    stcSearch.style.display = 'none';
+    stcTrending.style.display = 'none';
+    stcResults.style.display = 'none';
+    stcFavs.style.display = 'none';
+    stcMygifos.style.display = 'block';
+});

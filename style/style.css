@@ -348,13 +348,38 @@ section.error {
   width: 100%;
   display: none; }
 
-section.favorites {
+section.favorites, section.mygifos {
   width: 100%;
   display: none; }
-
-section.mygifos {
-  width: 100%;
-  display: none; }
+  section.favorites div.ctn-items, section.mygifos div.ctn-items {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    align-items: center; }
+    section.favorites div.ctn-items img.icon, section.mygifos div.ctn-items img.icon {
+      width: 25px;
+      height: 25px; }
+    section.favorites div.ctn-items p.title, section.mygifos div.ctn-items p.title {
+      font-family: "Montserrat", sans-serif;
+      font-size: 20px;
+      color: #572EE5;
+      text-align: center;
+      line-height: 30px; }
+      body.dark section.favorites div.ctn-items p.title, body.dark section.mygifos div.ctn-items p.title {
+        color: #FFFFFF; }
+    section.favorites div.ctn-items img.img-nocontent, section.mygifos div.ctn-items img.img-nocontent {
+      width: 150px;
+      height: 150px;
+      margin-top: 100px; }
+    section.favorites div.ctn-items p.txt, section.mygifos div.ctn-items p.txt {
+      font-family: "Montserrat", sans-serif;
+      font-size: 17px;
+      color: #5ED7C6;
+      text-align: center;
+      line-height: 33px;
+      margin-top: 23px;
+      margin-bottom: 115px;
+      width: 75%; }
 
 section.gifcommunity {
   width: 100%; }

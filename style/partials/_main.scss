@@ -244,14 +244,47 @@ section.error {
     display: none;
 }
 
-section.favorites {
+section.favorites, section.mygifos {
     width: 100%;
     display: none;
-}
-
-section.mygifos {
-    width: 100%;
-    display: none;
+    div.ctn-items {
+        display: flex;
+        flex-direction: column;
+        margin-top: 100px;
+        align-items: center;
+        img.icon {
+            width: 25px;
+            height: 25px;
+        }
+        p.title {
+            font-family: $first-font;
+            font-size: 20px;
+            color: $first-color;
+            text-align: center;
+            line-height: 30px;
+            body.dark & {
+                color: $fifth-color;
+                }
+        }
+        img.img-nocontent {
+            width: 150px;
+            height: 150px;
+            margin-top: 100px;
+        }
+        p.txt {
+            font-family: $first-font;
+            font-size: 17px;
+            color: $second-color;
+            text-align: center;
+            line-height: 33px;
+            margin-top: 23px;
+            margin-bottom: 115px;
+            width: 75%;
+        }
+        div.ctn-content {
+            
+        }
+    }
 }
 
 section.gifcommunity {
