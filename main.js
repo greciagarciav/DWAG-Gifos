@@ -67,7 +67,7 @@ const trendingWords = async () => {
 };
 
 const trendingGifs = async () => {
-    const ctnGifs = document.getElementById('ctn-gifs');
+    const ctnGifs = document.getElementById('sctn-gifs');
     data = await sendApiRequest(urlTrendGifs + '&limit=12&rating=g');
     ctnGifs.innerHTML = tempGif(data);
 };

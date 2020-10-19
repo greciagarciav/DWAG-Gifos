@@ -424,11 +424,11 @@ section.gifcommunity {
         justify-content: center; }
       section.gifcommunity div.ctn-gifcomm div.mainctn-gifs i.prev {
         left: 1%;
-        transform: translateY(280%); }
+        transform: translateY(280%);
+        display: none; }
       section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs {
         position: relative;
         display: flex;
-        -webkit-box-align: center;
         align-items: center;
         width: fit-content;
         height: 304px;
@@ -436,13 +436,30 @@ section.gifcommunity {
         margin: 0px auto;
         max-width: 90vw;
         overflow-x: scroll;
-        scroll-behavior: smooth;
-        top: 0;
-        -webkit-box-pack: center;
-        transition: .5s ease-in-out; }
+        scroll-behavior: smooth; }
+        section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs div.sctn-gifs {
+          position: relative;
+          top: 0;
+          left: 0;
+          display: flex;
+          justify-content: center;
+          transition: .5s ease-in-out; }
+          section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs div.sctn-gifs div.ctn-gif {
+            margin: 0 10px;
+            position: relative;
+            width: 100%;
+            float: left;
+            display: flex;
+            box-sizing: border-box;
+            height: 100%; }
+            section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs div.sctn-gifs div.ctn-gif .img-gif {
+              height: 300px; }
+            section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs div.sctn-gifs div.ctn-gif div.overlay {
+              display: none; }
       section.gifcommunity div.ctn-gifcomm div.mainctn-gifs i.next {
         right: 1%;
-        transform: translateY(-370%); }
+        transform: translateY(-370%);
+        display: none; }
 
 section.creategif {
   width: 100%;

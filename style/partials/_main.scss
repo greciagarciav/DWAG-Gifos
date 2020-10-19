@@ -337,11 +337,11 @@ section.gifcommunity {
         i.prev {
             left: 1%;
             transform: translateY(280%);
+            display: none;
         }
         div.ctn-gifs {
             position: relative;
             display: flex;
-            -webkit-box-align: center;
             align-items: center;
             width: fit-content;
             height: 304px;
@@ -350,17 +350,36 @@ section.gifcommunity {
             max-width: 90vw;
             overflow-x: scroll;
             scroll-behavior: smooth;
-            top: 0;
-            -webkit-box-pack: center;
-            transition: .5s ease-in-out;
-            
+            div.sctn-gifs {
+                position: relative;
+                top: 0;
+                left: 0;
+                display: flex;
+                justify-content: center;
+                transition: .5s ease-in-out;
+                div.ctn-gif {
+                    margin: 0 10px;
+                    position: relative;
+                    width: 100%;
+                    float: left;
+                    display: flex;
+                    box-sizing: border-box;
+                    height: 100%;                
+                       .img-gif {
+                        height: 300px;
+                        }
+                        div.overlay {
+                            display: none;
+                        }
+                    }
+            }  
            }
         i.next {
             right: 1%;
             transform: translateY(-370%);
+            display: none;
         }
        }
-       
    }
 }
 
