@@ -45,23 +45,6 @@ export const tempGif = (data) => {
     return temp;
 };
 
-export const pagination = (size) => {
-    const nPages = size/12;
-    let temp = '';
-
-    for (let i = 0; i <= nPages; i++ ) {
-        if (i == 0) {
-            temp += `
-            <a offset=${i}>${i + 1}</a>
-            `;
-        } else {
-            temp += `
-            <a offset=${i + 12}>${i + 1}</a>
-            `;
-        }
-    } 
-};
-
 export const gifsResultSearch = (inputSearch) => {
     const sectResults = document.getElementById('stc-results');
     sectResults.innerHTML = '';
@@ -94,4 +77,26 @@ export const viewNoResults = `
       </div>
   `
 ;
+
+export const infoModal = (idGif) => {
+    let info = '';
+    info += `
+    <div class="modal-content">
+    <span id="sp" class="close">&times;</span>
+    <div class="ctn-gif" id="${idGif.id}">
+        <img class="img-gif" src="${idGif.images.original.url}" alt="${idGif.title}">
+        <div class="overlay">
+            <div class="group-icons">
+                <div class="icon"><i ${idGif.id} class="far fa-heart"></i></div>
+                <div class="icon"><i ${idGif.id} class="fas fa-download"></i></div>
+            </div>
+            <div class="text-card">
+                <p class="text-user">${idGif.username !== '' ? idGif.username : 'User' }</p>
+                <p class="text-gift">${idGif.title}</p>
+            </div>
+        </div>
+</div>
+    </div>
+    `;
+};
 

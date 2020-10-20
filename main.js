@@ -66,10 +66,21 @@ const trendingWords = async () => {
     });
 };
 
+const assignCardEvent = () => {
+    const eventMax = document.querySelectorAll('.sctn-gifs .ctn-gif');
+    eventMax.forEach((card) => {
+        card.addEventListener('click', (event) => {
+            const cardId = event.target.closest('.ctn-gif').id;
+            console.log(cardId);
+        });
+    });
+};
+
 const trendingGifs = async () => {
     const ctnGifs = document.getElementById('sctn-gifs');
     data = await sendApiRequest(urlTrendGifs + '&limit=12&rating=g');
     ctnGifs.innerHTML = tempGif(data);
+    assignCardEvent();
 };
 
 trendingWords();
