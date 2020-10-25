@@ -1,4 +1,4 @@
-import { tempTrendOp, suggestionSearch, gifsResultSearch, tempGif, viewNoResults } from './templates.js'
+import { tempTrendOp, suggestionSearch, gifsResultSearch, tempGif, viewNoResults, infoModal, createModalCtn } from './templates.js'
 
 let data = [];
 const inputGift = document.getElementById('topic-gift');
@@ -14,6 +14,7 @@ const urlSearch = 'https://api.giphy.com/v1/gifs/search?api_key=xRw1K9iEL7bkhCbl
 const urlTrendingWords = 'https://api.giphy.com/v1/trending/searches?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
 const urlSuggestSearch = 'https://api.giphy.com/v1/gifs/search/tags?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
 const urlTrendGifs = 'https://api.giphy.com/v1/gifs/trending?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
+const urlGifById = 'https://api.giphy.com/v1/gifs/';
 
 const urlGet = (url, input, limit, offset) => {
     const result = url + input + limit + offset;
@@ -66,12 +67,25 @@ const trendingWords = async () => {
     });
 };
 
-const assignCardEvent = () => {
+const assignCardEvent =  () => {
+    const urlGif = (id) => urlGifById + `${id}` + '?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
     const eventMax = document.querySelectorAll('.sctn-gifs .ctn-gif');
+    const stcn = 'gifcommunity';
     eventMax.forEach((card) => {
-        card.addEventListener('click', (event) => {
+        card.addEventListener('click', async (event) => {
+            createModalCtn(stcn);
+            const modalHtml = document.getElementById('modal');
             const cardId = event.target.closest('.ctn-gif').id;
-            console.log(cardId);
+            data = await sendApiRequest(urlGif(cardId));
+            modalHtml.innerHTML = infoModal(data);
+            modalHtml.style.display = 'block';
+            const close = document.getElementById('sp');
+            close.addEventListener('click', () => modalHtml.style.display = 'none');
+            window.addEventListener('click', (event) => {
+                if (event.target === modalHtml) {
+                    modalHtml.style.display = 'none';
+                }
+            });
         });
     });
 };

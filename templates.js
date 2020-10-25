@@ -30,10 +30,10 @@ export const tempGif = (data) => {
             <img class="img-gif" src="${gif.images.original.url}" alt="${gif.title}">
             <div class="overlay">
                 <div class="group-icons">
-                    <div class="icon"><i ${gif.id} class="far fa-trash-alt"></i></div>
-                    <div class="icon"><i ${gif.id} class="far fa-heart"></i></div>
-                    <div class="icon"><i ${gif.id} class="fas fa-download"></i></div>
-                    <div class="icon"><i ${gif.id} class="fas fa-expand-alt"></i></div>
+                    <div id="${gif.id}" class="icon"><i class="far fa-trash-alt"></i></div>
+                    <div id="${gif.id}" class="icon"><i class="far fa-heart"></i></div>
+                    <div id="${gif.id}" class="icon"><i class="fas fa-download"></i></div>
+                    <div id="${gif.id}" class="icon"><i class="fas fa-expand-alt"></i></div>
                 </div>
                 <div class="text-card">
                     <p class="text-user">${gif.username !== '' ? gif.username : 'User' }</p>
@@ -83,20 +83,28 @@ export const infoModal = (idGif) => {
     info += `
     <div class="modal-content">
     <span id="sp" class="close">&times;</span>
-    <div class="ctn-gif" id="${idGif.id}">
-        <img class="img-gif" src="${idGif.images.original.url}" alt="${idGif.title}">
-        <div class="overlay">
-            <div class="group-icons">
-                <div class="icon"><i ${idGif.id} class="far fa-heart"></i></div>
-                <div class="icon"><i ${idGif.id} class="fas fa-download"></i></div>
-            </div>
-            <div class="text-card">
-                <p class="text-user">${idGif.username !== '' ? idGif.username : 'User' }</p>
-                <p class="text-gift">${idGif.title}</p>
+        <div class="ctn-gif" id="${idGif.id}">
+            <img class="img-gif" src="${idGif.images.original.url}" alt="${idGif.title}">
+            <div class="overlay">
+                <div class="group-icons">
+                    <div id="${idGif.id}" class="icon"><i class="far fa-heart"></i></div>
+                    <div id="${idGif.id}" class="icon"><i class="fas fa-download"></i></div>
+                </div>
+                <div class="text-card">
+                    <p class="text-user">${idGif.username !== '' ? idGif.username : 'User' }</p>
+                    <p class="text-gift">${idGif.title}</p>
+                </div>
             </div>
         </div>
-</div>
     </div>
     `;
+    return info;
 };
 
+export const createModalCtn = (sct) => {
+    const section = document.getElementById(sct);
+    const container = document.createElement('div');
+    container.setAttribute("id", "modal");
+    container.setAttribute("class", "modal");
+    section.insertBefore(container, section.firstChild);
+}
