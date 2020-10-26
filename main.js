@@ -80,11 +80,21 @@ const assignCardEvent =  () => {
             modalHtml.innerHTML = infoModal(data);
             modalHtml.style.display = 'block';
             const close = document.getElementById('sp');
+            const favGif = document.querySelector('.favorite');
+            const dowGif = document.querySelector('.download');
             close.addEventListener('click', () => modalHtml.style.display = 'none');
             window.addEventListener('click', (event) => {
                 if (event.target === modalHtml) {
                     modalHtml.style.display = 'none';
                 }
+            });
+            favGif.addEventListener('click', () => {
+                console.log('favorito');
+              
+                localStorage.setItem(`${data.id + '-gif'}`,  JSON.stringify(data));
+            });
+            dowGif.addEventListener('click', () => {
+                console.log('descargar');
             });
         });
     });

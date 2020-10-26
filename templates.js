@@ -86,14 +86,15 @@ export const infoModal = (idGif) => {
         <div class="ctn-gif" id="${idGif.id}">
             <img class="img-gif" src="${idGif.images.original.url}" alt="${idGif.title}">
             <div class="overlay">
-                <div class="group-icons">
-                    <div id="${idGif.id}" class="icon"><i class="far fa-heart"></i></div>
-                    <div id="${idGif.id}" class="icon"><i class="fas fa-download"></i></div>
-                </div>
                 <div class="text-card">
                     <p class="text-user">${idGif.username !== '' ? idGif.username : 'User' }</p>
                     <p class="text-gift">${idGif.title}</p>
                 </div>
+                <div class="group-icons">
+                    <div id="${idGif.id}" class="icon favorite"><i class="far fa-heart"></i></div>
+                    <div id="${idGif.id}" class="icon download"><i class="fas fa-download"></i></div>
+                </div>
+                
             </div>
         </div>
     </div>
