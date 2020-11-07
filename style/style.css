@@ -307,7 +307,6 @@ section.results {
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-column-gap: 10.5px;
-      grid-template-rows: 132.5px 132.5px 132.5px 132.5px 132.5px 132.5px;
       grid-row-gap: 10.5px;
       padding: 10px; }
       section.results div.ctn-results div.root div.error-results {

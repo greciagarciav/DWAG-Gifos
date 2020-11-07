@@ -1,6 +1,7 @@
 import { tempTrendOp, suggestionSearch, gifsResultSearch, tempGif, viewNoResults, infoModal, createModalCtn } from './templates.js'
 
 let data = [];
+
 const inputGift = document.getElementById('topic-gift');
 const optsTrend = document.getElementById('options');
 const suggestList = document.getElementById('suggest-list');
@@ -17,7 +18,10 @@ const urlTrendGifs = 'https://api.giphy.com/v1/gifs/trending?api_key=xRw1K9iEL7b
 const urlGifById = 'https://api.giphy.com/v1/gifs/';
 
 const urlGet = (url, input, limit, offset) => {
-    const result = url + input + limit + offset;
+    const keyword = `=${input}`;
+    const limity = `&limit=${limit}`;
+    const offst = `&offset=${offset}`;
+    const result = url + keyword + limity + offst;
     return result;
 };
 
@@ -29,7 +33,7 @@ const sendApiRequest = async(url) => {
 };
 
 const searchGifs = async (url, id, limit, offset) => {
-    const urlForSearch = urlGet(url, `=${id}`, `&limit=${limit}`, `&offset=${offset}`);
+    const urlForSearch = urlGet(url, id, limit, offset);
     data = await sendApiRequest(urlForSearch);
     gifsResultSearch(id);
     
@@ -37,21 +41,23 @@ const searchGifs = async (url, id, limit, offset) => {
     if (data.length !== 0) {
         root.innerHTML = tempGif(data);
         const btnSeeMore = document.getElementById('see-more');
-        btnSeeMore.addEventListener('click', () => {
-            seeMore(url, id);
+        let offset = 0;
+        const limit = 12;
+        btnSeeMore.addEventListener('click', async () => {
+            if (data.length >= 12) {
+                offset = offset + 12;
+                const urlForSearch = urlGet(url, id, limit, offset);
+                data = [].concat(data, await sendApiRequest(urlForSearch));
+                root.innerHTML = tempGif(data);
+            } else {
+                document.querySelector('.see-more').style.display = 'none';
+            }
         });
     } else {
         document.getElementById('root').innerHTML = viewNoResults;
         document.getElementById('root').style.display = 'block';
         document.querySelector('.see-more').style.display = 'none';
     }
-};
-
-let offset = 12;
-const seeMore = (url, inputSearch) => {
-    const limit = 12;
-    offset = offset + 12;
-    searchGifs(url, inputSearch, limit, offset);
 };
 
 const trendingWords = async () => {
@@ -90,7 +96,7 @@ const assignCardEvent =  () => {
             });
             favGif.addEventListener('click', () => {
                 console.log('favorito');
-              
+              console.log(data);
                 localStorage.setItem(`${data.id + '-gif'}`,  JSON.stringify(data));
             });
             dowGif.addEventListener('click', () => {
