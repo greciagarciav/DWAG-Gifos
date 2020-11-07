@@ -74,6 +74,7 @@ const trendingWords = async () => {
 };
 
 const assignCardEvent =  () => {
+    let favoritesGifs = [];
     const urlGif = (id) => urlGifById + `${id}` + '?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
     const eventMax = document.querySelectorAll('.sctn-gifs .ctn-gif');
     const stcn = 'gifcommunity';
@@ -93,11 +94,10 @@ const assignCardEvent =  () => {
                 if (event.target === modalHtml) {
                     modalHtml.style.display = 'none';
                 }
-            });
+            });       
             favGif.addEventListener('click', () => {
-                console.log('favorito');
-              console.log(data);
-                localStorage.setItem(`${data.id + '-gif'}`,  JSON.stringify(data));
+                favoritesGifs.push(cardId);
+                localStorage.setItem('Favoritos', JSON.stringify(favoritesGifs));
             });
             dowGif.addEventListener('click', () => {
                 console.log('descargar');
