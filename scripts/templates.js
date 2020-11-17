@@ -109,3 +109,26 @@ export const createModalCtn = (sct) => {
     container.setAttribute("class", "modal");
     section.insertBefore(container, section.firstChild);
 }
+
+export const tempGifav = (dataEachGif) => {
+    let temp = '';
+    // data.forEach((gif) => {
+        temp += `
+        <div class="ctn-gif" id="${dataEachGif.id}">
+            <img class="img-gif" src="${dataEachGif.images.original.url}" alt="${dataEachGif.title}">
+            <div class="overlay">
+                <div class="group-icons">
+                    <div id="${dataEachGif.id}" class="icon"><i class="far fa-trash-alt"></i></div>
+                    <div id="${dataEachGif.id}" class="icon"><i class="far fa-heart"></i></div>
+                    <div id="${dataEachGif.id}" class="icon"><i class="fas fa-download"></i></div>
+                    <div id="${dataEachGif.id}" class="icon"><i class="fas fa-expand-alt"></i></div>
+                </div>
+                <div class="text-card">
+                    <p class="text-user">${dataEachGif.username !== '' ? dataEachGif.username : 'User' }</p>
+                    <p class="text-gift">${dataEachGif.title}</p>
+                </div>
+            </div>
+        </div>`;
+    // })
+    return temp;
+};

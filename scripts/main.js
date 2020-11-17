@@ -1,4 +1,4 @@
-import { tempTrendOp, suggestionSearch, gifsResultSearch, tempGif, viewNoResults, infoModal, createModalCtn } from './templates.js'
+import { tempTrendOp, suggestionSearch, gifsResultSearch, tempGif, viewNoResults, infoModal, createModalCtn, tempGifav } from './templates.js'
 
 let data = [];
 
@@ -212,6 +212,8 @@ const stcSearch = document.getElementById('stc-search');
 const stcTrending = document.getElementById('stc-trending');
 const stcResults = document.getElementById('stc-results');
 const stcFavs = document.getElementById('stc-favs');
+const rootFavs = document.getElementById('root-fav');
+const noContentIcon = document.getElementById('hide-favnocontent');
 
 const urlGif = (id) => urlGifById + `${id}` + '?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
 
@@ -219,21 +221,23 @@ favs.addEventListener('click', () => {
     gifsResultSearch('Favoritos');
 
     const getStorageFav = localStorage.getItem('Favoritos');
-    let gifsDataArr = [];
+    let temp = '';
     if(getStorageFav !== null) {
+        noContentIcon.style.display = 'none';
         const storageFav = JSON.parse(getStorageFav);
         storageFav.forEach(async idGif => {
         data = await sendApiRequest(urlGif(idGif));
-          gifsDataArr.push(data);
+        temp += tempGifav(data);
+        rootFavs.innerHTML = temp;
         });
-    }
-    root.innerHTML = tempGif(gifsDataArr);
-
+    } 
+  
     stcSearch.style.display = 'none';
     stcTrending.style.display = 'none';
     stcResults.style.display = 'none';
     stcMygifos.style.display = 'none';
     stcFavs.style.display = 'block';
+   
 });
 
 // my gifos
