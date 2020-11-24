@@ -30,10 +30,9 @@ export const tempGif = (data) => {
             <img class="img-gif" src="${gif.images.original.url}" alt="${gif.title}">
             <div class="overlay">
                 <div class="group-icons">
-                    <div id="${gif.id}" class="icon"><i class="far fa-trash-alt"></i></div>
-                    <div id="${gif.id}" class="icon"><i class="far fa-heart"></i></div>
-                    <div id="${gif.id}" class="icon"><i class="fas fa-download"></i></div>
-                    <div id="${gif.id}" class="icon"><i class="fas fa-expand-alt"></i></div>
+                    <div id="${gif.id}" class="icon love"><i class="far fa-heart"></i></div>
+                    <div id="${gif.id}" class="icon download"><i class="fas fa-download"></i></div>
+                    <div id="${gif.id}" class="icon expand"><i class="fas fa-expand-alt"></i></div>
                 </div>
                 <div class="text-card">
                     <p class="text-user">${gif.username !== '' ? gif.username : 'User' }</p>
@@ -119,7 +118,6 @@ export const tempGifav = (dataEachGif) => {
             <div class="overlay">
                 <div class="group-icons">
                     <div id="${dataEachGif.id}" class="icon"><i class="far fa-trash-alt"></i></div>
-                    <div id="${dataEachGif.id}" class="icon"><i class="far fa-heart"></i></div>
                     <div id="${dataEachGif.id}" class="icon"><i class="fas fa-download"></i></div>
                     <div id="${dataEachGif.id}" class="icon"><i class="fas fa-expand-alt"></i></div>
                 </div>
