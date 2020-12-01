@@ -79,25 +79,38 @@ export const viewNoResults = `
 
 export const infoModal = (idGif) => {
     let info = '';
-    info += `
-    <div class="modal-content">
-    <span id="sp" class="close">&times;</span>
-        <div class="ctn-gif" id="${idGif.id}">
-            <img class="img-gif" src="${idGif.images.original.url}" alt="${idGif.title}">
-            <div class="overlay">
-                <div class="text-card">
-                    <p class="text-user">${idGif.username !== '' ? idGif.username : 'User' }</p>
-                    <p class="text-gift">${idGif.title}</p>
+    if (idGif.images.original != undefined) {
+        info += `
+                <div class="modal-content">
+                    <span id="sp" class="close">&times;</span>
+                    <div class="ctn-gif" id="${idGif.id}">
+                        <img class="img-gif" src="${idGif.images.original.url}" alt="${idGif.title}">
+                        <div class="overlay">
+                            <div class="text-card">
+                                <p class="text-user">${idGif.username !== '' ? idGif.username : 'User' }</p>
+                                <p class="text-gift">${idGif.title}</p>
+                            </div>
+                            <div class="group-icons">
+                                <div id="${idGif.id}" class="icon favorite"><i class="far fa-heart"></i></div>
+                                <div id="${idGif.id}" class="icon download"><i class="fas fa-download"></i></div>
+                            </div>
+                            
+                        </div>
+                    </div>
                 </div>
-                <div class="group-icons">
-                    <div id="${idGif.id}" class="icon favorite"><i class="far fa-heart"></i></div>
-                    <div id="${idGif.id}" class="icon download"><i class="fas fa-download"></i></div>
+        `;
+    } else {
+        info += `
+            <div class="modal-content">
+                <span id="sp" class="close">&times;</span>
+                <div>
+                    <img src="assets/icon-busqueda-sin-resultado.svg" alt="Busqueda-sin-resultados"><br><br>
+                    <p>Algo no anda bien, intenta con otro gif!</p><br>
                 </div>
-                
             </div>
-        </div>
-    </div>
-    `;
+        `;
+    }
+    
     return info;
 };
 
