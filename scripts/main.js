@@ -35,8 +35,9 @@ const sendApiRequest = async(url) => {
 };
 
 // Método que asigna evento del modal a gifs
+// let favoritesGifs = [];
+
 const assignCardEvent =  () => {
-    let favoritesGifs = [];
     const urlGif = (id) => urlGifById + `${id}` + '?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
     const eventMax = document.querySelectorAll('.sctn-gifs .ctn-gif');
     const stcn = 'gifcommunity';
@@ -61,19 +62,22 @@ const assignCardEvent =  () => {
                     modalHtml.style.display = 'none';
                 }
             });
-
+            
             favGif.addEventListener('click', () => {
                 let saved = localStorage.getItem('Favoritos');
+                let saved2;
+
                 if(saved !== null) {
-                    const saved2 = JSON.parse(saved);
+                    saved2 = JSON.parse(saved);
                     const idExist = saved2.includes(cardId);
                         if(!idExist) {
-                            favoritesGifs.push(cardId);
-                            localStorage.setItem('Favoritos', JSON.stringify(favoritesGifs));
+                            saved2.push(cardId);
+                            localStorage.setItem('Favoritos', JSON.stringify(saved2));
                         }
                 } else {
-                    favoritesGifs.push(cardId);
-                    localStorage.setItem('Favoritos', JSON.stringify(favoritesGifs));
+                    let saved3 = [];
+                    saved3.push(cardId);
+                    localStorage.setItem('Favoritos', JSON.stringify(saved3));
                 }  
             });
 
@@ -121,6 +125,49 @@ trendingGifs();
 
 
 /* ---------------------------------------------- Buscador --------------------------------------------*/
+//Asigna eventos a iconos de cada card de esta sección
+const assignCardEventSearch = () => {
+    const favGif = document.querySelectorAll('.ctn-gif .love');
+    const downloadGif = document.querySelectorAll('.ctn-gif .download');
+    const expandGif = document.querySelectorAll('.ctn-gif .expand');
+
+    favGif.forEach((iconLove) => {
+
+        
+        iconLove.addEventListener('click', (event) => {
+            const cardId = event.target.closest('.ctn-gif').id;
+
+            let saved = localStorage.getItem('Favoritos');
+            let saved2;
+            
+            if(saved !== null) {
+                saved2 = JSON.parse(saved);
+                const idExist = saved2.includes(cardId);
+                    if(!idExist) {
+                        saved2.push(cardId);
+                        localStorage.setItem('Favoritos', JSON.stringify(saved2));
+                    }
+            } else {
+                let saved3 = [];
+                saved3.push(cardId);
+                localStorage.setItem('Favoritos', JSON.stringify(saved3));
+            } 
+        });
+    });
+
+    downloadGif.forEach((iconDownload) => {
+        iconDownload.addEventListener('click', () => {
+            console.log('download');
+        });
+    });
+
+    expandGif.forEach((iconExpand) => {
+        iconExpand.addEventListener('click', () => {
+            console.log('expand');
+        });
+    });
+};
+
 const searchGifs = async (url, id, limit, offset) => {
     const urlForSearch = urlGet(url, id, limit, offset);
     data = await sendApiRequest(urlForSearch);
@@ -129,6 +176,7 @@ const searchGifs = async (url, id, limit, offset) => {
     const root = document.getElementById('root');
     if (data.length !== 0) {
         root.innerHTML = tempGif(data);
+        assignCardEventSearch();
         const btnSeeMore = document.getElementById('see-more');
         let offset = 0;
         const limit = 12;
@@ -138,6 +186,7 @@ const searchGifs = async (url, id, limit, offset) => {
                 const urlForSearch = urlGet(url, id, limit, offset);
                 data = [].concat(data, await sendApiRequest(urlForSearch));
                 root.innerHTML = tempGif(data);
+                assignCardEventSearch();
             } else {
                 document.querySelector('.see-more').style.display = 'none';
             }
@@ -234,6 +283,30 @@ const stcFavs = document.getElementById('stc-favs');
 const rootFavs = document.getElementById('root-fav');
 const noContentIcon = document.getElementById('hide-favnocontent');
 
+const assignCardEventFavs = () => {
+    const deleteGif = document.querySelectorAll('.ctn-gif .delete');
+    const downloadGif = document.querySelectorAll('.ctn-gif .download');
+    const expandGif = document.querySelectorAll('.ctn-gif .expand');
+
+    deleteGif.forEach((iconDelete) => {
+        iconDelete.addEventListener('click', () => {
+            console.log('delete');
+        });
+    });
+
+    downloadGif.forEach((iconDownload) => {
+        iconDownload.addEventListener('click', () => {
+            console.log('download');
+        });
+    });
+
+    expandGif.forEach((iconExpand) => {
+        iconExpand.addEventListener('click', () => {
+            console.log('expand');
+        });
+    });
+};
+
 // Muestra sección Favoritos
 const urlGif = (id) => urlGifById + `${id}` + '?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
 favs.addEventListener('click', () => {
@@ -244,18 +317,52 @@ favs.addEventListener('click', () => {
     if(getStorageFav !== null) {
         noContentIcon.style.display = 'none';
         const storageFav = JSON.parse(getStorageFav);
-        storageFav.forEach(async idGif => {
-        data = await sendApiRequest(urlGif(idGif));
-        temp += tempGifav(data);
-        rootFavs.innerHTML = temp;
-        });
+
+        if (storageFav.length > 12) {
+            let offset = 0;
+            const limit = 12;
+
+            storageFav.slice(offset, limit).forEach(async idGif => {
+            data = await sendApiRequest(urlGif(idGif));
+            temp += tempGifav(data);
+            rootFavs.innerHTML = temp;
+            assignCardEventFavs();
+            });
+
+            const btnMore = document.createElement('button');
+            btnMore.setAttribute("id", "see-more-fav");
+            btnMore.setAttribute("class", "see-more");
+            btnMore.textContent = 'VER MÁS';
+            stcFavs.appendChild(btnMore);
+
+            const seeMoreButton = document.getElementById('see-more-fav');
+            
+            seeMoreButton.addEventListener('click', () =>{
+                offset = offset + limit
+                storageFav.slice(offset, limit).forEach(async idGif => {
+                    data = [].concat(data, await sendApiRequest(urlGif(idGif))) ;
+                    temp += tempGifav(data);
+                    rootFavs.innerHTML = temp;
+                    assignCardEventFavs();
+                    });
+            });
+            
+        } else {
+            storageFav.forEach(async idGif => {
+            data = await sendApiRequest(urlGif(idGif));
+            temp += tempGifav(data);
+            rootFavs.innerHTML = temp;
+            assignCardEventFavs();
+            });
+
+        }    
     } 
   
     stcSearch.style.display = 'none';
     stcTrending.style.display = 'none';
     stcResults.style.display = 'none';
     stcMygifos.style.display = 'none';
-    stcFavs.style.display = 'block';
+    stcFavs.style.display = 'flex';
 });
 
 /* ----------------------------------------- Mis Gifos -----------------------------------------------*/
