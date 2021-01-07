@@ -376,3 +376,16 @@ myGifos.addEventListener('click', () => {
     stcFavs.style.display = 'none';
     stcMygifos.style.display = 'block';
 });
+
+/* ----------------------------------------- Crear mis gifs -----------------------------------------------*/
+const createGif = document.getElementById('create-gif');
+const stcGifComm = document.getElementById('gifcommunity');
+const stcCreateGif = document.getElementById('stc-createGif');
+
+createGif.addEventListener('click', () => {
+    console.log('hola');
+    stcSearch.style.display = 'none';
+    stcTrending.style.display = 'none';
+    stcGifComm.style.display = 'none';
+    stcCreateGif.style.display = 'block';
+});
