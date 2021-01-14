@@ -381,6 +381,10 @@ section.results {
       margin-top: 45px;
       margin-bottom: 45px;
       font-weight: 600; }
+      body.dark section.results div.ctn-results button.see-more {
+        color: #FFFFFF;
+        border: solid 1px #FFFFFF;
+        background-color: #37383C; }
 
 section.error {
   width: 100%;
@@ -496,6 +500,10 @@ section.favorites, section.mygifos {
     background-color: #FFFFFF;
     margin: 45px 0px;
     font-weight: 600; }
+    body.dark section.favorites button.see-more, body.dark section.mygifos button.see-more {
+      color: #FFFFFF;
+      border: solid 1px #FFFFFF;
+      background-color: #37383C; }
 
 section.gifcommunity {
   width: 100%; }
@@ -607,6 +615,10 @@ section.creategif {
         justify-content: space-between;
         font-size: 14px;
         animation-duration: 2s; }
+        body.dark section.creategif div.ctn-creategif div.ctn-maker .container-making {
+          background-color: #37383C;
+          color: #FFFFFF;
+          border: 1px solid #FFFFFF; }
         section.creategif div.ctn-creategif div.ctn-maker .container-making .half-square {
           display: flex;
           justify-content: space-between; }
@@ -646,10 +658,14 @@ section.creategif {
               margin: 18px 0; }
               section.creategif div.ctn-creategif div.ctn-maker .container-making .flex-text-create .text-inside-create h1 span {
                 color: #5ED7C6; }
+              body.dark section.creategif div.ctn-creategif div.ctn-maker .container-making .flex-text-create .text-inside-create h1 {
+                color: #FFFFFF; }
             section.creategif div.ctn-creategif div.ctn-maker .container-making .flex-text-create .text-inside-create p {
               font-family: "Roboto", sans-serif;
               color: #000000;
               margin: 14px 0; }
+              body.dark section.creategif div.ctn-creategif div.ctn-maker .container-making .flex-text-create .text-inside-create p {
+                color: #FFFFFF; }
       section.creategif div.ctn-creategif div.ctn-maker .container-control {
         width: 100%; }
         section.creategif div.ctn-creategif div.ctn-maker .container-control .container-steps {
@@ -667,6 +683,9 @@ section.creategif {
             padding: 3px 10px;
             margin: 0 10px;
             cursor: pointer; }
+            body.dark section.creategif div.ctn-creategif div.ctn-maker .container-control .container-steps .step {
+              color: #FFFFFF;
+              border: 1px solid #FFFFFF; }
           section.creategif div.ctn-creategif div.ctn-maker .container-control .container-steps .hideBtn {
             display: none; }
           section.creategif div.ctn-creategif div.ctn-maker .container-control .container-steps .repeat-capture {
@@ -682,6 +701,8 @@ section.creategif {
           background-color: #572EE5;
           border-radius: 10px;
           max-width: 600px; }
+          body.dark section.creategif div.ctn-creategif div.ctn-maker .container-control .container-line {
+            background-color: #FFFFFF; }
         section.creategif div.ctn-creategif div.ctn-maker .container-control .container-buttons .button-cgf {
           font-family: "Montserrat", sans-serif;
           cursor: pointer;
@@ -697,6 +718,9 @@ section.creategif {
           font-weight: 700;
           text-decoration: none;
           width: 130px; }
+          body.dark section.creategif div.ctn-creategif div.ctn-maker .container-control .container-buttons .button-cgf {
+            border: 1px solid #FFFFFF;
+            color: #FFFFFF; }
         section.creategif div.ctn-creategif div.ctn-maker .container-control .container-buttons .hideBtn {
           display: none; }
     section.creategif div.ctn-creategif div.container-roll {
@@ -704,8 +728,14 @@ section.creategif {
       flex-direction: column;
       justify-content: flex-end;
       transform: translateY(-60px); }
+    section.creategif div.ctn-creategif .hideD {
+      display: block; }
+      body.dark section.creategif div.ctn-creategif .hideD {
+        display: none; }
     section.creategif div.ctn-creategif .hideL {
       display: none; }
+      body.dark section.creategif div.ctn-creategif .hideL {
+        display: block; }
 
 footer {
   width: 100%;

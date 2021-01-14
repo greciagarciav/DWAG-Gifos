@@ -284,6 +284,11 @@ section.results {
             margin-top: 45px;
             margin-bottom: 45px;
             font-weight: 600;
+            body.dark & {
+                color: $fifth-color;
+                border: solid 1px $fifth-color;
+                background-color: $nineth-color;
+            }
         }
     }
 }
@@ -425,6 +430,11 @@ section.favorites, section.mygifos {
         background-color: $fifth-color;
         margin: 45px 0px;
         font-weight: 600;
+        body.dark & {
+            color: $fifth-color;
+            border: solid 1px $fifth-color;
+            background-color: $nineth-color;
+        }
     }
 }
 
@@ -557,6 +567,11 @@ section.creategif {
                 justify-content: space-between;
                 font-size: 14px;
                 animation-duration: 2s;
+                body.dark & {
+                    background-color: $nineth-color;
+                    color: $fifth-color;
+                    border: 1px solid $fifth-color;
+                    }
                 .half-square {
                     display: flex;
                     justify-content: space-between;
@@ -602,11 +617,17 @@ section.creategif {
                             span {
                                 color: $second-color;
                             }
+                            body.dark & {
+                                color: $fifth-color;
+                                }
                         }
                         p {
                             font-family: $second-font;
                             color: $fourth-color;
                             margin: 14px 0;
+                            body.dark & {
+                                color: $fifth-color;
+                                }
                         }
                     }
                 }
@@ -628,6 +649,10 @@ section.creategif {
                         padding: 3px 10px;
                         margin: 0 10px;
                         cursor: pointer;
+                        body.dark & {
+                            color: $fifth-color;
+                            border: 1px solid $fifth-color;
+                        }
                     }
                     .hideBtn {
                         display: none;
@@ -647,6 +672,9 @@ section.creategif {
                     background-color: $first-color;
                     border-radius: 10px;
                     max-width: 600px;
+                    body.dark & {
+                        background-color: $fifth-color;
+                    }
                 }
                 .container-buttons {
                     .button-cgf {
@@ -664,6 +692,10 @@ section.creategif {
                         font-weight: 700;
                         text-decoration: none;
                         width: 130px;
+                        body.dark & {
+                            border: 1px solid $fifth-color;
+                            color: $fifth-color;
+                        }
                     }
                     .hideBtn {
                         display: none;
@@ -678,10 +710,16 @@ section.creategif {
             transform: translateY(-60px);
         }
         .hideD {
-
+            display: block;
+            body.dark & {
+                display: none;
+            }
         }
         .hideL {
             display: none;
+            body.dark & {
+                display: block;
+            }
         }
     }
 }
