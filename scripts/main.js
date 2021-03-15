@@ -374,19 +374,43 @@ favs.addEventListener('click', () => {
 
 /* ----------------------------------------- Mis Gifos -----------------------------------------------*/
 const myGifos = document.getElementById('my-gifs');
+const zeroGifs = document.getElementById('zero-gifs');
+const rootMyGifos = document.getElementById('root-my-gifos');
 
-myGifos.addEventListener('click', () => {
+async function searchGifById(gifId){
+    const api_url = 'https://api.giphy.com/v1/gifs/'+gifId+'?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
+    const response = await fetch(api_url);
+    const data = await response.json();
+    return data
+}
+
+myGifos.addEventListener('click', async() => {
     stcSearch.style.display = 'none';
     stcTrending.style.display = 'none';
     stcResults.style.display = 'none';
     stcFavs.style.display = 'none';
     stcCreateGif.style.display = 'none';
+   
+    let gifsData = []
+    const gifsLS = JSON.parse(localStorage.getItem('MyGifs'))
+
+    if(gifsLS) {
+        for (const iterator of gifsLS) {
+            let id = await searchGifById(iterator);
+            gifsData.push(id.data);
+        }
+    } else {
+        stcMygifos.style.display = 'block';
+    }
+    
+    rootMyGifos.innerHTML = tempGif(gifsData);
+    assignCardEventSearch();
+    zeroGifs.style.display = 'none';
     stcMygifos.style.display = 'block';
 });
 
 /* ----------------------------------------- Crear mis gifs -----------------------------------------------*/
 const createGif = document.getElementById('create-gif');
-const startBtn = document.getElementById('starting');
 
 createGif.addEventListener('click', () => {
     stcSearch.style.display = 'none';
@@ -397,7 +421,7 @@ createGif.addEventListener('click', () => {
 });
 
 
-startBtn.addEventListener('click', () => {
+document.getElementById('starting').addEventListener('click', function() {
     startCreateGif();
 });
 
@@ -444,7 +468,7 @@ const createGifSteps = (value) => {
     }
 }
 
-const startCreateGif = () => {
+function startCreateGif () {
     createGifSteps(1)
     let videoRecording = document.createElement('video')
     let containerVideo = document.getElementById('container-video')
@@ -454,13 +478,12 @@ const startCreateGif = () => {
     navigator.mediaDevices.getUserMedia({
         audio: false,
         video: {
-            height: { max: 300 },
-            width: {max: 500}
+            height: { max: 320 },
+            width: {max: 480}
         }
-    }).then(async function(stream){
+    }).then( async function (stream) {
         videoRecording.srcObject = stream
         videoRecording.play()
-        // Desde aqui se cuelgagit
         createGifSteps(2)
         const recorder = RecordRTC(stream, {
             type: 'gif',
@@ -534,7 +557,7 @@ document.getElementById('repeat').addEventListener('click', function(){
     window.location.reload();
 })
 
-const addLS = () => {
+const addLS = (name, value) => {
     let createdGifs = localStorage.getItem(name)
     createdGifs = createdGifs ? JSON.parse(createdGifs) : []
     createdGifs.push(value)
@@ -565,7 +588,7 @@ const clock = (recorder) => {
 }
 
 async function postGifos(file){
-    const apiURL = `https://upload.giphy.com/v1/gifs?api_key=TwJ1SaQHCIBd0qczJHRc3ioNpKdTxEYs`;
+    const apiURL = `https://upload.giphy.com/v1/gifs?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q`;
     try {
         const OtherParam = {
             method: "POST",
@@ -578,7 +601,6 @@ async function postGifos(file){
         console.log('Fetch Error',error);
     }
 }
-
 
 // const showSearch = () => {
 //     let y = window.scrollY
