@@ -14,7 +14,7 @@ header, footer {
   grid-column-end: 4; }
 
 main {
-  margin-top: 95px;
+  margin-top: 100px;
   width: 100%; }
 
 input:focus {
@@ -423,31 +423,31 @@ section.favorites, section.mygifos {
       margin-top: 23px;
       margin-bottom: 115px;
       width: 75%; }
-  section.favorites div.root-fav, section.mygifos div.root-fav {
+  section.favorites div.root-fav, section.favorites div.ctn-content, section.mygifos div.root-fav, section.mygifos div.ctn-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 10.5px;
     grid-row-gap: 10.5px;
     padding: 10px; }
-    section.favorites div.root-fav div.error-results, section.mygifos div.root-fav div.error-results {
+    section.favorites div.root-fav div.error-results, section.favorites div.ctn-content div.error-results, section.mygifos div.root-fav div.error-results, section.mygifos div.ctn-content div.error-results {
       display: flex;
       flex-direction: column;
       padding: 20px 10%;
       text-align: center; }
-      section.favorites div.root-fav div.error-results p, section.mygifos div.root-fav div.error-results p {
+      section.favorites div.root-fav div.error-results p, section.favorites div.ctn-content div.error-results p, section.mygifos div.root-fav div.error-results p, section.mygifos div.ctn-content div.error-results p {
         font-size: 22px;
         font-family: "Montserrat", sans-serif;
         color: #50E3C2;
         line-height: 25px;
         font-weight: 700; }
-    section.favorites div.root-fav div.ctn-gif, section.mygifos div.root-fav div.ctn-gif {
+    section.favorites div.root-fav div.ctn-gif, section.favorites div.ctn-content div.ctn-gif, section.mygifos div.root-fav div.ctn-gif, section.mygifos div.ctn-content div.ctn-gif {
       width: 100%;
       position: relative; }
-      section.favorites div.root-fav div.ctn-gif img.img-gif, section.mygifos div.root-fav div.ctn-gif img.img-gif {
+      section.favorites div.root-fav div.ctn-gif img.img-gif, section.favorites div.ctn-content div.ctn-gif img.img-gif, section.mygifos div.root-fav div.ctn-gif img.img-gif, section.mygifos div.ctn-content div.ctn-gif img.img-gif {
         display: block;
         width: 100%;
         height: 100%; }
-      section.favorites div.root-fav div.ctn-gif div.overlay, section.mygifos div.root-fav div.ctn-gif div.overlay {
+      section.favorites div.root-fav div.ctn-gif div.overlay, section.favorites div.ctn-content div.ctn-gif div.overlay, section.mygifos div.root-fav div.ctn-gif div.overlay, section.mygifos div.ctn-content div.ctn-gif div.overlay {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -458,42 +458,42 @@ section.favorites, section.mygifos {
         opacity: 0;
         transition: .5s ease;
         background-color: #572EE5; }
-        section.favorites div.root-fav div.ctn-gif div.overlay div.group-icons, section.mygifos div.root-fav div.ctn-gif div.overlay div.group-icons {
+        section.favorites div.root-fav div.ctn-gif div.overlay div.group-icons, section.favorites div.ctn-content div.ctn-gif div.overlay div.group-icons, section.mygifos div.root-fav div.ctn-gif div.overlay div.group-icons, section.mygifos div.ctn-content div.ctn-gif div.overlay div.group-icons {
           position: absolute;
           right: 0;
           top: 0;
           display: flex;
           padding-right: 2.5px; }
-          section.favorites div.root-fav div.ctn-gif div.overlay div.group-icons div.icon, section.mygifos div.root-fav div.ctn-gif div.overlay div.group-icons div.icon {
+          section.favorites div.root-fav div.ctn-gif div.overlay div.group-icons div.icon, section.favorites div.ctn-content div.ctn-gif div.overlay div.group-icons div.icon, section.mygifos div.root-fav div.ctn-gif div.overlay div.group-icons div.icon, section.mygifos div.ctn-content div.ctn-gif div.overlay div.group-icons div.icon {
             opacity: 0.7;
             background: #FFFFFF;
             width: 20px;
             height: 20px;
             margin: 5px 2.5px;
             border-radius: 6px; }
-            section.favorites div.root-fav div.ctn-gif div.overlay div.group-icons div.icon i, section.mygifos div.root-fav div.ctn-gif div.overlay div.group-icons div.icon i {
+            section.favorites div.root-fav div.ctn-gif div.overlay div.group-icons div.icon i, section.favorites div.ctn-content div.ctn-gif div.overlay div.group-icons div.icon i, section.mygifos div.root-fav div.ctn-gif div.overlay div.group-icons div.icon i, section.mygifos div.ctn-content div.ctn-gif div.overlay div.group-icons div.icon i {
               color: #572EE5;
               margin-left: 4.5px;
               font-size: 12px; }
-          section.favorites div.root-fav div.ctn-gif div.overlay div.group-icons div.icon:hover, section.mygifos div.root-fav div.ctn-gif div.overlay div.group-icons div.icon:hover {
+          section.favorites div.root-fav div.ctn-gif div.overlay div.group-icons div.icon:hover, section.favorites div.ctn-content div.ctn-gif div.overlay div.group-icons div.icon:hover, section.mygifos div.root-fav div.ctn-gif div.overlay div.group-icons div.icon:hover, section.mygifos div.ctn-content div.ctn-gif div.overlay div.group-icons div.icon:hover {
             opacity: 1; }
-        section.favorites div.root-fav div.ctn-gif div.overlay div.text-card, section.mygifos div.root-fav div.ctn-gif div.overlay div.text-card {
+        section.favorites div.root-fav div.ctn-gif div.overlay div.text-card, section.favorites div.ctn-content div.ctn-gif div.overlay div.text-card, section.mygifos div.root-fav div.ctn-gif div.overlay div.text-card, section.mygifos div.ctn-content div.ctn-gif div.overlay div.text-card {
           position: absolute;
           left: 0;
           bottom: 0; }
-          section.favorites div.root-fav div.ctn-gif div.overlay div.text-card p.text-user, section.mygifos div.root-fav div.ctn-gif div.overlay div.text-card p.text-user {
+          section.favorites div.root-fav div.ctn-gif div.overlay div.text-card p.text-user, section.favorites div.ctn-content div.ctn-gif div.overlay div.text-card p.text-user, section.mygifos div.root-fav div.ctn-gif div.overlay div.text-card p.text-user, section.mygifos div.ctn-content div.ctn-gif div.overlay div.text-card p.text-user {
             font-family: "Roboto", sans-serif;
             font-size: 14px;
             color: #FFFFFF;
             padding-left: 12px; }
-          section.favorites div.root-fav div.ctn-gif div.overlay div.text-card p.text-gift, section.mygifos div.root-fav div.ctn-gif div.overlay div.text-card p.text-gift {
+          section.favorites div.root-fav div.ctn-gif div.overlay div.text-card p.text-gift, section.favorites div.ctn-content div.ctn-gif div.overlay div.text-card p.text-gift, section.mygifos div.root-fav div.ctn-gif div.overlay div.text-card p.text-gift, section.mygifos div.ctn-content div.ctn-gif div.overlay div.text-card p.text-gift {
             font-family: "Roboto", sans-serif;
             font-size: 15px;
             color: #FFFFFF;
             padding-left: 12px;
             padding-bottom: 5px;
             width: 80%; }
-    section.favorites div.root-fav div.ctn-gif:hover div.overlay, section.mygifos div.root-fav div.ctn-gif:hover div.overlay {
+    section.favorites div.root-fav div.ctn-gif:hover div.overlay, section.favorites div.ctn-content div.ctn-gif:hover div.overlay, section.mygifos div.root-fav div.ctn-gif:hover div.overlay, section.mygifos div.ctn-content div.ctn-gif:hover div.overlay {
       opacity: 0.7; }
   section.favorites button.see-more, section.mygifos button.see-more {
     color: #572EE5;

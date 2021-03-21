@@ -194,7 +194,6 @@ section.results {
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-column-gap: 10.5px;
-            // grid-template-rows: 132.5px 132.5px 132.5px 132.5px 132.5px 132.5px;
             grid-row-gap: 10.5px;
             padding: 10px;
             div.error-results {
@@ -338,7 +337,7 @@ section.favorites, section.mygifos {
         }
       
     }
-    div.root-fav {
+    div.root-fav, div.ctn-content {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-column-gap: 10.5px;

@@ -1,4 +1,4 @@
-import { tempTrendOp, suggestionSearch, gifsResultSearch, tempGif, viewNoResults, infoModal, createModalCtn, tempGifav } from './templates.js'
+import { tempTrendOp, suggestionSearch, gifsResultSearch, tempGif, viewNoResults, infoModal, createModalCtn } from './templates.js'
 
 let data = [];
 
@@ -10,6 +10,7 @@ const iSearch = document.getElementById('search-icon');
 const iClean = document.getElementById('clean-icon');
 const resultsSection = document.getElementById('stc-results');
 const btnMode = document.getElementById('mode');
+const mod = document.getElementById('modal');
 
 const urlSearch = 'https://api.giphy.com/v1/gifs/search?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
 const urlTrendingWords = 'https://api.giphy.com/v1/trending/searches?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
@@ -45,10 +46,10 @@ const sendApiRequest = async(url) => {
 // Método que asigna evento del modal a gifs
 // let favoritesGifs = [];
 
-const assignCardEvent =  () => {
+const assignCardEvent =  (sectionEvent, sectClass) => {
     const urlGif = (id) => urlGifById + `${id}` + '?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
-    const eventMax = document.querySelectorAll('.sctn-gifs .ctn-gif');
-    const stcn = 'gifcommunity';
+    const eventMax = document.querySelectorAll(sectClass);
+    const stcn = sectionEvent;
 
     eventMax.forEach((card) => {
 
@@ -62,12 +63,17 @@ const assignCardEvent =  () => {
             const close = document.getElementById('sp');
             const favGif = document.querySelector('.favorite');
             const dowGif = document.querySelector('.download');
+            const deleteGif = document.querySelector('.delete');
 
-            close.addEventListener('click', () => modalHtml.style.display = 'none');
+            close.addEventListener('click', () => {
+                modalHtml.outerHTML = "";
+                // modalHtml.style.display = 'none';
+            });
 
             window.addEventListener('click', (event) => {
                 if (event.target === modalHtml) {
-                    modalHtml.style.display = 'none';
+                    modalHtml.outerHTML = "";
+                    // modalHtml.style.display = 'none';
                 }
             });
             
@@ -98,6 +104,10 @@ const assignCardEvent =  () => {
                 a.dataset.downloadurl = ['application/octet-stream', a.download, a.href].join(':');
                 a.click();
             });
+
+            deleteGif.addEventListener('click', () =>{
+                console.log('delete');
+            });           
         });
     });
 };
@@ -116,6 +126,7 @@ const trendingWords = async () => {
         searchGifs (urlSearch, idItem, 12, 0);
     });
 };
+
 // Inicializa y muestra las 5 palabras más buscadas
 trendingWords();
 
@@ -125,57 +136,13 @@ const trendingGifs = async () => {
     const ctnGifs = document.getElementById('sctn-gifs');
     data = await sendApiRequest(urlTrendGifs + '&limit=12&rating=g');
     ctnGifs.innerHTML = tempGif(data);
-    assignCardEvent();
+    assignCardEvent('gifcommunity', '.sctn-gifs .ctn-gif');
 };
 
 // Inicializa y muestra los 12 gifs más buscados
 trendingGifs();
 
-
 /* ---------------------------------------------- Buscador --------------------------------------------*/
-//Asigna eventos a iconos de cada card de esta sección
-const assignCardEventSearch = () => {
-    const favGif = document.querySelectorAll('.ctn-gif .love');
-    const downloadGif = document.querySelectorAll('.ctn-gif .download');
-    const expandGif = document.querySelectorAll('.ctn-gif .expand');
-
-    favGif.forEach((iconLove) => {
-
-        
-        iconLove.addEventListener('click', (event) => {
-            const cardId = event.target.closest('.ctn-gif').id;
-
-            let saved = localStorage.getItem('Favoritos');
-            let saved2;
-            
-            if(saved !== null) {
-                saved2 = JSON.parse(saved);
-                const idExist = saved2.includes(cardId);
-                    if(!idExist) {
-                        saved2.push(cardId);
-                        localStorage.setItem('Favoritos', JSON.stringify(saved2));
-                    }
-            } else {
-                let saved3 = [];
-                saved3.push(cardId);
-                localStorage.setItem('Favoritos', JSON.stringify(saved3));
-            } 
-        });
-    });
-
-    downloadGif.forEach((iconDownload) => {
-        iconDownload.addEventListener('click', () => {
-            console.log('download');
-        });
-    });
-
-    expandGif.forEach((iconExpand) => {
-        iconExpand.addEventListener('click', () => {
-            console.log('expand');
-        });
-    });
-};
-
 const searchGifs = async (url, id, limit, offset) => {
     const urlForSearch = urlGet(url, id, limit, offset);
     data = await sendApiRequest(urlForSearch);
@@ -184,7 +151,7 @@ const searchGifs = async (url, id, limit, offset) => {
     const root = document.getElementById('root');
     if (data.length !== 0) {
         root.innerHTML = tempGif(data);
-        assignCardEventSearch();
+        assignCardEvent('root', '.root .ctn-gif');
         const btnSeeMore = document.getElementById('see-more');
         let offset = 0;
         const limit = 12;
@@ -194,7 +161,7 @@ const searchGifs = async (url, id, limit, offset) => {
                 const urlForSearch = urlGet(url, id, limit, offset);
                 data = [].concat(data, await sendApiRequest(urlForSearch));
                 root.innerHTML = tempGif(data);
-                assignCardEventSearch();
+                assignCardEvent('root', '.root .ctn-gif');
             } else {
                 document.querySelector('.see-more').style.display = 'none';
             }
@@ -289,38 +256,16 @@ const favs = document.getElementById('fav');
 const rootFavs = document.getElementById('root-fav');
 const noContentIcon = document.getElementById('hide-favnocontent');
 
-const assignCardEventFavs = () => {
-    const deleteGif = document.querySelectorAll('.ctn-gif .delete');
-    const downloadGif = document.querySelectorAll('.ctn-gif .download');
-    const expandGif = document.querySelectorAll('.ctn-gif .expand');
-
-    deleteGif.forEach((iconDelete) => {
-        iconDelete.addEventListener('click', () => {
-            console.log('delete');
-        });
-    });
-
-    downloadGif.forEach((iconDownload) => {
-        iconDownload.addEventListener('click', () => {
-            console.log('download');
-        });
-    });
-
-    expandGif.forEach((iconExpand) => {
-        iconExpand.addEventListener('click', () => {
-            console.log('expand');
-        });
-    });
-};
 
 // Muestra sección Favoritos
 const urlGif = (id) => urlGifById + `${id}` + '?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
+
 favs.addEventListener('click', () => {
     gifsResultSearch('Favoritos');
 
     const getStorageFav = localStorage.getItem('Favoritos');
     let temp = '';
-    if(getStorageFav !== null) {
+    if(getStorageFav && getStorageFav !== null && getStorageFav.length !== 0) {
         noContentIcon.style.display = 'none';
         const storageFav = JSON.parse(getStorageFav);
 
@@ -330,9 +275,9 @@ favs.addEventListener('click', () => {
 
             storageFav.slice(offset, limit).forEach(async idGif => {
             data = await sendApiRequest(urlGif(idGif));
-            temp += tempGifav(data);
+            temp += tempGif(data);
             rootFavs.innerHTML = temp;
-            assignCardEventFavs();
+            assignCardEvent('root-fav', '.root-fav .ctn-gif');
             });
 
             const btnMore = document.createElement('button');
@@ -347,18 +292,18 @@ favs.addEventListener('click', () => {
                 offset = offset + limit
                 storageFav.slice(offset, limit).forEach(async idGif => {
                     data = [].concat(data, await sendApiRequest(urlGif(idGif))) ;
-                    temp += tempGifav(data);
+                    temp += tempGif(data);
                     rootFavs.innerHTML = temp;
-                    assignCardEventFavs();
+                    assignCardEvent('root-fav', '.root-fav .ctn-gif');
                     });
             });
             
         } else {
             storageFav.forEach(async idGif => {
             data = await sendApiRequest(urlGif(idGif));
-            temp += tempGifav(data);
+            temp += tempGif(data);
             rootFavs.innerHTML = temp;
-            assignCardEventFavs();
+            assignCardEvent('root-fav', '.root-fav .ctn-gif');
             });
 
         }    
@@ -377,40 +322,64 @@ const myGifos = document.getElementById('my-gifs');
 const zeroGifs = document.getElementById('zero-gifs');
 const rootMyGifos = document.getElementById('root-my-gifos');
 
-async function searchGifById(gifId){
-    const api_url = 'https://api.giphy.com/v1/gifs/'+gifId+'?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
-    const response = await fetch(api_url);
-    const data = await response.json();
-    return data
-}
+myGifos.addEventListener('click', () => {
 
-myGifos.addEventListener('click', async() => {
+    const gifsLS = JSON.parse(localStorage.getItem('MyGifs'));
+    let temp = '';
+    if(gifsLS && gifsLS !== null && gifsLS.length !== 0) {
+        zeroGifs.style.display = 'none';
+
+        if (gifsLS.length > 12) {
+            let offset = 0;
+            const limit = 12;
+
+            gifsLS.slice(offset, limit).forEach(async idGif => {
+                data = await sendApiRequest(urlGif(idGif));
+                temp += tempGif(data);
+                rootMyGifos.innerHTML = temp;
+                assignCardEvent('root-my-gifos', '.ctn-content .ctn-gif');
+                });
+
+                const btnMore = document.createElement('button');
+                btnMore.setAttribute("id", "see-more-fav");
+                btnMore.setAttribute("class", "see-more");
+                btnMore.textContent = 'VER MÁS';
+                stcFavs.appendChild(btnMore);
+
+                const seeMoreButton = document.getElementById('see-more-fav');
+            
+                seeMoreButton.addEventListener('click', () =>{
+                    offset = offset + limit
+                    gifsLS.slice(offset, limit).forEach(async idGif => {
+                        data = [].concat(data, await sendApiRequest(urlGif(idGif))) ;
+                        temp += tempGif(data);
+                        rootMyGifos.innerHTML = temp;
+                        assignCardEvent('root-my-gifos', '.ctn-content .ctn-gif');
+                        });
+                });
+
+        } else {
+            gifsLS.forEach(async idGif => {
+            data = await sendApiRequest(urlGif(idGif));
+            temp += tempGif(data);
+            rootMyGifos.innerHTML = temp;
+            assignCardEvent('root-my-gifos', '.ctn-content .ctn-gif');
+            });
+        }
+    } 
+    
     stcSearch.style.display = 'none';
     stcTrending.style.display = 'none';
     stcResults.style.display = 'none';
+    stcMygifos.style.display = 'none';
+    stcGifComm.style.display = 'none';
     stcFavs.style.display = 'none';
-    stcCreateGif.style.display = 'none';
-   
-    let gifsData = []
-    const gifsLS = JSON.parse(localStorage.getItem('MyGifs'))
-
-    if(gifsLS) {
-        for (const iterator of gifsLS) {
-            let id = await searchGifById(iterator);
-            gifsData.push(id.data);
-        }
-    } else {
-        stcMygifos.style.display = 'block';
-    }
-    
-    rootMyGifos.innerHTML = tempGif(gifsData);
-    assignCardEventSearch();
-    zeroGifs.style.display = 'none';
-    stcMygifos.style.display = 'block';
+    stcMygifos.style.display = 'flex';
 });
 
 /* ----------------------------------------- Crear mis gifs -----------------------------------------------*/
 const createGif = document.getElementById('create-gif');
+const repeatCapture = document.getElementById('repeat');
 
 createGif.addEventListener('click', () => {
     stcSearch.style.display = 'none';
@@ -528,7 +497,7 @@ function startCreateGif () {
 
 const successCard = `
 <div id="video-card-success" class="video-card hideBtn">
-<img src="/img/loader.svg" alt="loader">
+<img src="assets/loader.svg" alt="loader">
 <h3>GIFO subido con éxito</h3>
 </div>
 `
@@ -543,19 +512,19 @@ async function uploadGif (file) {
     cardLoad.style.width = `${vidWidth}px`
     cardLoad.style.height = `${vidHeight}px`
     cardLoad.className = 'video-card'
-    cardLoad.innerHTML = `<img src="/img/loader.svg" alt="loader"><br>
+    cardLoad.innerHTML = `<img src="assets/loader.svg" alt="loader"><br>
                           <h3>Estamos subiendo tu GIFO</h3>`
     containerVideo.appendChild(cardLoad)
     let postGif = await postGifos(file);
     addLS('MyGifs',postGif.data.id)
-    cardLoad.innerHTML = `<img src="/img/ok.svg" alt="loader"><br>
+    cardLoad.innerHTML = `<img src="assets/ok.svg" alt="loader"><br>
                           <h3>GIFO subido con éxito</h3>`
                           console.log("Uploaded")
 }
 
-document.getElementById('repeat').addEventListener('click', function(){
-    window.location.reload();
-})
+// document.getElementById('repeat').addEventListener('click', function(){
+//     window.location.reload();
+// })
 
 const addLS = (name, value) => {
     let createdGifs = localStorage.getItem(name)
@@ -611,3 +580,9 @@ async function postGifos(file){
 //     }
 // }
 // window.addEventListener("scroll", showSearch())
+
+repeatCapture.addEventListener('click', () => {
+    
+    console.log('hola');
+});
+

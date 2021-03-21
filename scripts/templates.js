@@ -24,23 +24,43 @@ export const suggestionSearch = (dataSuggestion, ulList) => {
 
 export const tempGif = (data) => {
     let temp = '';
-    data.forEach((gif) => {
+    if (Array.isArray(data)) {
+        data.forEach((gif) => {
+            temp += `
+            <div class="ctn-gif" id="${gif.id}">
+                <img class="img-gif" src="${gif.images.original.url}" alt="${gif.title}">
+                <div class="overlay">
+                    <div class="group-icons">
+                        <div id="${gif.id}" class="icon delete"><i class="far fa-trash-alt"></i></div>
+                        <div id="${gif.id}" class="icon love"><i class="far fa-heart"></i></div>
+                        <div id="${gif.id}" class="icon download"><i class="fas fa-download"></i></div>
+                        <div id="${gif.id}" class="icon expand"><i class="fas fa-expand-alt"></i></div>
+                    </div>
+                    <div class="text-card">
+                        <p class="text-user">${gif.username !== '' ? gif.username : 'User' }</p>
+                        <p class="text-gift">${gif.title}</p>
+                    </div>
+                </div>
+            </div>`;
+        });
+    } else {
         temp += `
-        <div class="ctn-gif" id="${gif.id}">
-            <img class="img-gif" src="${gif.images.original.url}" alt="${gif.title}">
+        <div class="ctn-gif" id="${data.id}">
+            <img class="img-gif" src="${data.images.original.url}" alt="${data.title}">
             <div class="overlay">
                 <div class="group-icons">
-                    <div id="${gif.id}" class="icon love"><i class="far fa-heart"></i></div>
-                    <div id="${gif.id}" class="icon download"><i class="fas fa-download"></i></div>
-                    <div id="${gif.id}" class="icon expand"><i class="fas fa-expand-alt"></i></div>
+                    <div id="${data.id}" class="icon delete"><i class="far fa-trash-alt"></i></div>
+                    <div id="${data.id}" class="icon love"><i class="far fa-heart"></i></div>
+                    <div id="${data.id}" class="icon download"><i class="fas fa-download"></i></div>
+                    <div id="${data.id}" class="icon expand"><i class="fas fa-expand-alt"></i></div>
                 </div>
                 <div class="text-card">
-                    <p class="text-user">${gif.username !== '' ? gif.username : 'User' }</p>
-                    <p class="text-gift">${gif.title}</p>
+                    <p class="text-user">${data.username !== '' ? data.username : 'User' }</p>
+                    <p class="text-gift">${data.title}</p>
                 </div>
             </div>
         </div>`;
-    })
+    }
     return temp;
 };
 
@@ -110,7 +130,6 @@ export const infoModal = (idGif) => {
             </div>
         `;
     }
-    
     return info;
 };
 
@@ -121,23 +140,3 @@ export const createModalCtn = (sct) => {
     container.setAttribute("class", "modal");
     section.insertBefore(container, section.firstChild);
 }
-
-export const tempGifav = (dataEachGif) => {
-    let temp = '';
-        temp += `
-        <div class="ctn-gif" id="${dataEachGif.id}">
-            <img class="img-gif" src="${dataEachGif.images.original.url}" alt="${dataEachGif.title}">
-            <div class="overlay">
-                <div class="group-icons">
-                    <div id="${dataEachGif.id}" class="icon delete"><i class="far fa-trash-alt"></i></div>
-                    <div id="${dataEachGif.id}" class="icon download"><i class="fas fa-download"></i></div>
-                    <div id="${dataEachGif.id}" class="icon expand"><i class="fas fa-expand-alt"></i></div>
-                </div>
-                <div class="text-card">
-                    <p class="text-user">${dataEachGif.username !== '' ? dataEachGif.username : 'User' }</p>
-                    <p class="text-gift">${dataEachGif.title}</p>
-                </div>
-            </div>
-        </div>`;
-    return temp;
-};
