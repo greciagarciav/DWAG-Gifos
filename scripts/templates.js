@@ -31,7 +31,7 @@ export const tempGif = (data) => {
                 <img class="img-gif" src="${gif.images.original.url}" alt="${gif.title}">
                 <div class="overlay">
                     <div class="group-icons">
-                        <div id="${gif.id}" class="icon delete"><i class="far fa-trash-alt"></i></div>
+                        <div id="${gif.id}" style="display:none;" class="icon delete"><i class="far fa-trash-alt"></i></div>
                         <div id="${gif.id}" class="icon love"><i class="far fa-heart"></i></div>
                         <div id="${gif.id}" class="icon download"><i class="fas fa-download"></i></div>
                         <div id="${gif.id}" class="icon expand"><i class="fas fa-expand-alt"></i></div>
@@ -97,27 +97,29 @@ export const viewNoResults = `
   `
 ;
 
-export const infoModal = (idGif) => {
+export const infoModal = (idGif, rightView) => {
     let info = '';
+    const viewIconDelete = `<div id="${idGif.id}" class="icon delete"><i class="far fa-trash-alt"></i></div>`;
     if (idGif.images.original != undefined) {
         info += `
-                <div class="modal-content">
-                    <span id="sp" class="close">&times;</span>
-                    <div class="ctn-gif" id="${idGif.id}">
-                        <img class="img-gif" src="${idGif.images.original.url}" alt="${idGif.title}">
-                        <div class="overlay">
-                            <div class="text-card">
-                                <p class="text-user">${idGif.username !== '' ? idGif.username : 'User' }</p>
-                                <p class="text-gift">${idGif.title}</p>
-                            </div>
-                            <div class="group-icons">
-                                <div id="${idGif.id}" class="icon favorite"><i class="far fa-heart"></i></div>
-                                <div id="${idGif.id}" class="icon download"><i class="fas fa-download"></i></div>
-                            </div>
-                            
+            <span id="sp" class="close">&times;</span>
+            <div class="modal-content">
+                <div class="ctn-gif" id="${idGif.id}">
+                    <img class="img-gif" style="width:100%;" src="${idGif.images.original.url}" alt="${idGif.title}">
+                    <div class="overlay">
+                        <div class="text-card">
+                            <p class="text-user">${idGif.username !== '' ? idGif.username : 'User' }</p>
+                            <p class="text-gift">${idGif.title}</p>
                         </div>
+                        <div class="group-icons">
+                            ${ rightView ? viewIconDelete : '' }
+                            <div id="${idGif.id}" class="icon favorite"><i class="far fa-heart"></i></div>
+                            <div id="${idGif.id}" class="icon download"><i class="fas fa-download"></i></div>
+                        </div>
+                        
                     </div>
                 </div>
+            </div>
         `;
     } else {
         info += `

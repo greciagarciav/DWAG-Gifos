@@ -14,20 +14,25 @@ footer {
     height: 196px; 
     body.dark & {
         color: $fifth-color;
-        } 
-        p.share {
-            font-size: 15px;
-            padding-top: 47px;
-            padding-bottom: 0;
         }
-        div.social {
-            display: flex;
-            flex-direction: row;
-            padding-bottom: 40px;
-            padding-top: 22px;
-            i {
-                color: $sixth-color;
-                margin: 5px;
+        div.social-media {
+            body.dark & {
+                color: $fifth-color;
+                }
+            p.share {
+                font-size: 15px;
+                padding-top: 47px;
+                padding-bottom: 0;
+            }
+            div.social {
+                display: flex;
+                flex-direction: row;
+                padding-bottom: 40px;
+                padding-top: 22px;
+                i {
+                    color: $sixth-color;
+                    margin: 5px;
+                }
             }
         }
         p {
@@ -36,4 +41,33 @@ footer {
             padding-bottom: 23px;
         }
   }
+}
+
+@media only screen and (min-width: 600px) {
+    footer div.ctn-footer {
+        justify-content: space-around;
+        flex-direction: row;
+        height: fit-content;
+
+        div.social-media {
+            display: flex;
+            text-align: center;
+
+            div.social {
+                padding-bottom: 23px;
+
+                a {
+                    padding: 0 5px;
+                }
+            }
+
+            p.share {
+                padding-top: 25px;
+            }
+        }
+
+        p {
+            padding-bottom: 0;
+        }
+    }
 }

@@ -10,6 +10,8 @@ const iSearch = document.getElementById('search-icon');
 const iClean = document.getElementById('clean-icon');
 const resultsSection = document.getElementById('stc-results');
 const btnMode = document.getElementById('mode');
+const hideMenu = document.getElementById('menu-toggle');
+
 const mod = document.getElementById('modal');
 
 const urlSearch = 'https://api.giphy.com/v1/gifs/search?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
@@ -43,10 +45,14 @@ const sendApiRequest = async(url) => {
     return data;
 };
 
-// Método que asigna evento del modal a gifs
-// let favoritesGifs = [];
+//styles to remove when modal of gif is created
+const removeStylesGif = (id, clasStl) => {
+    const elem1 = document.getElementById(id);
+    elem1.classList.remove(clasStl);
+}
 
-const assignCardEvent =  (sectionEvent, sectClass) => {
+// Método que asigna evento del modal a gifs
+const assignCardEvent =  (sectionEvent, sectClass, rightView) => {
     const urlGif = (id) => urlGifById + `${id}` + '?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
     const eventMax = document.querySelectorAll(sectClass);
     const stcn = sectionEvent;
@@ -58,22 +64,29 @@ const assignCardEvent =  (sectionEvent, sectClass) => {
             const modalHtml = document.getElementById('modal');
             const cardId = event.target.closest('.ctn-gif').id;
             data = await sendApiRequest(urlGif(cardId));
-            modalHtml.innerHTML = infoModal(data);
+            if (rightView) {
+                modalHtml.innerHTML = infoModal(data, rightView);
+            } else {
+                modalHtml.innerHTML = infoModal(data);
+            }
             modalHtml.style.display = 'block';
             const close = document.getElementById('sp');
             const favGif = document.querySelector('.favorite');
             const dowGif = document.querySelector('.download');
             const deleteGif = document.querySelector('.delete');
+            const deleteGifMyGif = document.querySelector('div.ctn-content div.modal div.modal-content div.overlay div.group-icons .delete');
+            const deleteGifFav = document.querySelector('div.root-fav div.modal div.modal-content div.overlay div.group-icons .delete');
+
+
+            removeStylesGif(cardId, 'ctn-gif');
 
             close.addEventListener('click', () => {
                 modalHtml.outerHTML = "";
-                // modalHtml.style.display = 'none';
             });
 
             window.addEventListener('click', (event) => {
                 if (event.target === modalHtml) {
                     modalHtml.outerHTML = "";
-                    // modalHtml.style.display = 'none';
                 }
             });
             
@@ -105,9 +118,40 @@ const assignCardEvent =  (sectionEvent, sectClass) => {
                 a.click();
             });
 
-            deleteGif.addEventListener('click', () =>{
-                console.log('delete');
-            });           
+            const jsonMyGifos = localStorage.getItem('MyGifs');
+            const arrMyGifos = JSON.parse(jsonMyGifos);
+            const jsonFavoritos = localStorage.getItem('Favoritos');
+            const arrFavoritos = JSON.parse(jsonFavoritos);
+
+
+            // deleteGif.addEventListener('click', () => {
+                if(deleteGifMyGif) {
+                    deleteGifMyGif.addEventListener('click', () => {
+                        if (arrMyGifos.includes(cardId)) {
+                            let index = arrMyGifos.indexOf(cardId);
+                            if (index > -1) {                    
+                                arrMyGifos.splice(index, 1);
+                                localStorage.setItem('MyGifs',JSON.stringify(arrMyGifos));
+                                console.log('deleteMyGif');
+                              }
+                        }
+                    });
+                }
+                
+                if(deleteGifFav){
+                    deleteGifFav.addEventListener('click', () => {
+                        if (arrFavoritos.includes(cardId)) {
+                            let index = arrFavoritos.indexOf(cardId);
+                            if (index > -1) {
+                                arrFavoritos.splice(index, 1);
+                                localStorage.setItem('Favoritos',JSON.stringify(arrFavoritos));
+                                favs.click();
+                                console.log('deleteFav');
+                            }
+                        }
+                    }); 
+                }
+            // });       
         });
     });
 };
@@ -138,6 +182,36 @@ const trendingGifs = async () => {
     ctnGifs.innerHTML = tempGif(data);
     assignCardEvent('gifcommunity', '.sctn-gifs .ctn-gif');
 };
+
+const slickList = document.getElementById('ctn-gifs');
+const track = document.getElementById('sctn-gifs');
+const next = document.getElementById('next');
+const previous = document.getElementById('previous');
+let leftPosition;
+
+previous.addEventListener('click', () => Move(1));;
+next.addEventListener('click', () => Move(2));
+
+const Move = (value) => {
+
+    let carrousel =  document.getElementById('ctn-gifs');
+    const trackWidth = track.offsetWidth;
+    const listWidth = slickList.offsetWidth;
+
+    track.style.left == "" ? leftPosition = track.style.left = 0 : leftPosition = parseFloat(track.style.left.slice(0, -2) * -1);
+
+    if(leftPosition < (trackWidth - listWidth) && value == 2){
+        track.style.left = `${-1 * (leftPosition + 275)}px`;
+        carrousel.scroll(track.style.left,0)
+        return;
+    }else if(leftPosition > 0  && value == 1){
+        track.style.left = `${-1 * (leftPosition - 275)}px`
+        carrousel.scroll(track.style.left,0)
+    }
+}
+
+
+
 
 // Inicializa y muestra los 12 gifs más buscados
 trendingGifs();
@@ -239,6 +313,7 @@ btnMode.addEventListener('click', () =>{
         dayM.style.display = 'none'; 
         darkM.style.display = 'block';
 	}
+    hideMenu.checked = false;
 });
 
 if (localStorage.getItem('dark-mode') === 'true') {
@@ -255,7 +330,6 @@ if (localStorage.getItem('dark-mode') === 'true') {
 const favs = document.getElementById('fav');
 const rootFavs = document.getElementById('root-fav');
 const noContentIcon = document.getElementById('hide-favnocontent');
-
 
 // Muestra sección Favoritos
 const urlGif = (id) => urlGifById + `${id}` + '?api_key=xRw1K9iEL7bkhCblwCyxd00ppSOBwLVE&q';
@@ -294,7 +368,7 @@ favs.addEventListener('click', () => {
                     data = [].concat(data, await sendApiRequest(urlGif(idGif))) ;
                     temp += tempGif(data);
                     rootFavs.innerHTML = temp;
-                    assignCardEvent('root-fav', '.root-fav .ctn-gif');
+                    assignCardEvent('root-fav', '.root-fav .ctn-gif', true);
                     });
             });
             
@@ -303,18 +377,20 @@ favs.addEventListener('click', () => {
             data = await sendApiRequest(urlGif(idGif));
             temp += tempGif(data);
             rootFavs.innerHTML = temp;
-            assignCardEvent('root-fav', '.root-fav .ctn-gif');
+            assignCardEvent('root-fav', '.root-fav .ctn-gif', true);
             });
 
         }    
     } 
-  
+    
+    hideMenu.checked = false;
     stcSearch.style.display = 'none';
     stcTrending.style.display = 'none';
     stcResults.style.display = 'none';
     stcMygifos.style.display = 'none';
     stcGifComm.style.display = 'none';
     stcFavs.style.display = 'flex';
+    stcCreateGif.style.display = 'none';
 });
 
 /* ----------------------------------------- Mis Gifos -----------------------------------------------*/
@@ -354,7 +430,7 @@ myGifos.addEventListener('click', () => {
                         data = [].concat(data, await sendApiRequest(urlGif(idGif))) ;
                         temp += tempGif(data);
                         rootMyGifos.innerHTML = temp;
-                        assignCardEvent('root-my-gifos', '.ctn-content .ctn-gif');
+                        assignCardEvent('root-my-gifos', '.ctn-content .ctn-gif', true);
                         });
                 });
 
@@ -363,17 +439,19 @@ myGifos.addEventListener('click', () => {
             data = await sendApiRequest(urlGif(idGif));
             temp += tempGif(data);
             rootMyGifos.innerHTML = temp;
-            assignCardEvent('root-my-gifos', '.ctn-content .ctn-gif');
+            assignCardEvent('root-my-gifos', '.ctn-content .ctn-gif', true);
             });
         }
     } 
     
+    hideMenu.checked = false;
     stcSearch.style.display = 'none';
     stcTrending.style.display = 'none';
     stcResults.style.display = 'none';
     stcMygifos.style.display = 'none';
     stcGifComm.style.display = 'none';
     stcFavs.style.display = 'none';
+    stcCreateGif.style.display = 'none';
     stcMygifos.style.display = 'flex';
 });
 
@@ -382,10 +460,12 @@ const createGif = document.getElementById('create-gif');
 const repeatCapture = document.getElementById('repeat');
 
 createGif.addEventListener('click', () => {
+    hideMenu.checked = false;
     stcSearch.style.display = 'none';
     stcTrending.style.display = 'none';
     stcGifComm.style.display = 'none';
     stcMygifos.style.display = 'none';
+    stcFavs.style.display = 'none';
     stcCreateGif.style.display = 'block';
 });
 
@@ -498,7 +578,7 @@ function startCreateGif () {
 const successCard = `
 <div id="video-card-success" class="video-card hideBtn">
 <img src="assets/loader.svg" alt="loader">
-<h3>GIFO subido con éxito</h3>
+<h3>GIFO subido con éxito <br> ve a verlo en MIS GIFOS </h3>
 </div>
 `
 
@@ -518,7 +598,7 @@ async function uploadGif (file) {
     let postGif = await postGifos(file);
     addLS('MyGifs',postGif.data.id)
     cardLoad.innerHTML = `<img src="assets/ok.svg" alt="loader"><br>
-                          <h3>GIFO subido con éxito</h3>`
+                          <h3>GIFO subido con éxito <br> ve a verlo en MIS GIFOS</h3>`
                           console.log("Uploaded")
 }
 

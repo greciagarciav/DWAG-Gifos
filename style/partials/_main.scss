@@ -17,6 +17,7 @@ div.modal-content {
     padding: 20px;
     width: 80%;
     div.ctn-gif {
+        cursor: pointer;
         img {
         width: 100%;
 
@@ -27,8 +28,12 @@ div.modal-content {
         flex-direction: row;
         justify-content: space-between;
         div.group-icons {
+            cursor: pointer;
             display: flex;
             color: $first-color;
+            div.icon {
+                margin-right: 5px;
+            }
         }
     }
 }
@@ -38,13 +43,14 @@ span.close {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    padding-right: 35px;
+    cursor: pointer;
 }
 
 span.close:hover,
 span.close:focus {
   color: #000;
   text-decoration: none;
-  cursor: pointer;
 }
 
 section.search {
@@ -112,7 +118,7 @@ section.search {
                 i.fa-search {
                     display: block;
                     margin-right: 10px;
-
+                    cursor: pointer;
                 }
                 i.fa-times {
                     display: none;
@@ -163,7 +169,7 @@ section.trending {
     p.options {
         padding-bottom: 35px;
         width: 80%;
-
+        cursor: pointer;
         span {
             font-size: 14px;
             line-height: 25px;
@@ -212,6 +218,7 @@ section.results {
             div.ctn-gif {
             width: 100%;
             position: relative;
+            cursor: pointer;
                 img.img-gif {
                     display: block;
                     width: 100%;
@@ -235,6 +242,7 @@ section.results {
                         display: flex;
                         padding-right: 2.5px;
                         div.icon {
+                            cursor: pointer;
                             opacity: 0.7;
                             background: $fifth-color;
                             width: 20px;
@@ -283,6 +291,7 @@ section.results {
             margin-top: 45px;
             margin-bottom: 45px;
             font-weight: 600;
+            cursor: pointer;
             body.dark & {
                 color: $fifth-color;
                 border: solid 1px $fifth-color;
@@ -359,6 +368,7 @@ section.favorites, section.mygifos {
         div.ctn-gif {
         width: 100%;
         position: relative;
+        cursor: pointer;
             img.img-gif {
                 display: block;
                 width: 100%;
@@ -382,6 +392,7 @@ section.favorites, section.mygifos {
                     display: flex;
                     padding-right: 2.5px;
                     div.icon {
+                        cursor: pointer;
                         opacity: 0.7;
                         background: $fifth-color;
                         width: 20px;
@@ -425,6 +436,7 @@ section.favorites, section.mygifos {
         }
     }
     button.see-more {
+        cursor: pointer;
         color: $first-color;
         background-color: $fifth-color;
         margin: 45px 0px;
@@ -487,6 +499,13 @@ section.gifcommunity {
             left: 1%;
             transform: translateY(280%);
             display: none;
+            color: #572EE5;
+            font-size: x-large;
+            body.dark & {
+                color: $fifth-color;
+                border: solid 1px $fifth-color;
+                background-color: $nineth-color;
+            }
         }
         div.ctn-gifs {
             position: relative;
@@ -507,6 +526,7 @@ section.gifcommunity {
                 justify-content: center;
                 transition: .5s ease-in-out;
                 div.ctn-gif {
+                    cursor: pointer;
                     margin: 0 10px;
                     position: relative;
                     width: 100%;
@@ -527,6 +547,13 @@ section.gifcommunity {
             right: 1%;
             transform: translateY(-370%);
             display: none;
+            color: #572EE5;
+            font-size: x-large;
+            body.dark & {
+                color: $fifth-color;
+                border: solid 1px $fifth-color;
+                background-color: $nineth-color;
+            }
         }
        }
    }
@@ -539,9 +566,10 @@ section.creategif {
     div.ctn-creategif {
         display: flex;
         justify-content: center;
-        transform: translateX(-1.7%);
+        // transform: translateX(-1.7%);
+        overflow: hidden;
         div.ctn-camera {
-            display: flex;
+            display: none;
             justify-content: flex-end;
             .light-camera {
                 margin-top: 5px;
@@ -556,8 +584,8 @@ section.creategif {
                 padding: 10px;
                 background-color: $fifth-color;
                 border: 1px solid $first-color;
-                min-height: 400px;
-                width: 600px;
+                min-height: 300px;
+                width: 250px;
                 height: 300px;
                 max-width: 600px;
                 position: relative;
@@ -608,6 +636,7 @@ section.creategif {
                         text-align: center;
                         max-height: 300px;
                         max-width: 500px;
+                        width: 100%;
                         h1 {
                             font-family: $first-font;
                             color: $first-color;
@@ -627,6 +656,24 @@ section.creategif {
                             body.dark & {
                                 color: $fifth-color;
                                 }
+                        }
+                        .video-card {
+                            position: absolute;
+                            max-height: 300px;
+                            top: 50%;
+                            left: 50%;
+                            -webkit-transform: translate(-50%, -50%);
+                            background: rgba(87, 46, 229, 0.7);
+                            font-family: 'Montserrat', sans-serif;
+                            text-align: center;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            color: $fifth-color;
+                            img {
+                                width: 25%;
+                                padding-top: 35px;
+                            }
                         }
                     }
                 }
@@ -663,6 +710,9 @@ section.creategif {
                         transform: translate(125%, 20%);
                         font-weight: 700;
                         cursor: pointer;
+                    }
+                    .time-recording {
+                        color: $first-color;
                     }
                 }
                 .container-line {
@@ -703,7 +753,7 @@ section.creategif {
             }
         }
         div.container-roll {
-            display: flex;
+            display: none;
             flex-direction: column;
             justify-content: flex-end;
             transform: translateY(-60px);
@@ -721,4 +771,65 @@ section.creategif {
             }
         }
     }
+}
+
+@media only screen and (min-width: 600px) {
+
+    section.results div.ctn-results {
+        padding: 20px 10%;
+    }
+
+    section.results div.ctn-results div.root, 
+    section.favorites div.root-fav, 
+    section.mygifos div.ctn-content {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 30px;
+        grid-row-gap: 35px;
+        margin: 0 auto;
+    }
+
+    section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs {
+        overflow: hidden;
+    }
+
+    section.gifcommunity div.ctn-gifcomm div.mainctn-gifs i.prev {
+        display: flex;
+    }
+
+    section.gifcommunity div.ctn-gifcomm div.mainctn-gifs i.next {
+        display: flex;
+    }
+
+    section.creategif div.ctn-creategif div.ctn-maker .container-making {
+        width: 600px;
+        height: 335px;
+    }
+
+    section.creategif div.ctn-creategif div.container-roll {
+        display: flex;
+    }
+
+    section.creategif div.ctn-creategif div.ctn-camera {
+        display: flex;
+    }
+
+    div.modal-content {
+        display: flex;
+        justify-content: center;
+    }
+
+    div.modal-content div {
+        max-width: 400px;
+    }
+
+    span.close {
+        position: absolute;
+        right: 0;
+        margin: -5% 15%;
+    }
+
+    div.modal {
+        z-index: 10;
+    }
+
 }

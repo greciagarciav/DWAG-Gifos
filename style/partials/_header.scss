@@ -143,6 +143,9 @@ header {
                                 color: $fifth-color;
                                 }
                         }
+                        a.crea-gif {
+                            display: none;
+                        }
                         a:hover {
                             border-bottom: 2px solid $second-color;
                         }

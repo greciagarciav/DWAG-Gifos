@@ -143,6 +143,8 @@ header {
         text-transform: uppercase; }
         body.dark header nav ul.menu li a {
           color: #FFFFFF; }
+      header nav ul.menu li a.crea-gif {
+        display: none; }
       header nav ul.menu li a:hover {
         border-bottom: 2px solid #5ED7C6; }
       header nav ul.menu li a:active {
@@ -173,27 +175,33 @@ div.modal-content {
   margin: auto;
   padding: 20px;
   width: 80%; }
-  div.modal-content div.ctn-gif img {
-    width: 100%; }
+  div.modal-content div.ctn-gif {
+    cursor: pointer; }
+    div.modal-content div.ctn-gif img {
+      width: 100%; }
   div.modal-content div.overlay {
     display: flex;
     flex-direction: row;
     justify-content: space-between; }
     div.modal-content div.overlay div.group-icons {
+      cursor: pointer;
       display: flex;
       color: #572EE5; }
+      div.modal-content div.overlay div.group-icons div.icon {
+        margin-right: 5px; }
 
 span.close {
   color: #572EE5;
   float: right;
   font-size: 28px;
-  font-weight: bold; }
+  font-weight: bold;
+  padding-right: 35px;
+  cursor: pointer; }
 
 span.close:hover,
 span.close:focus {
   color: #000;
-  text-decoration: none;
-  cursor: pointer; }
+  text-decoration: none; }
 
 section.search {
   display: grid;
@@ -247,7 +255,8 @@ section.search {
           margin-right: 5px; }
         section.search div div div.ctn-search div i.fa-search {
           display: block;
-          margin-right: 10px; }
+          margin-right: 10px;
+          cursor: pointer; }
         section.search div div div.ctn-search div i.fa-times {
           display: none; }
       section.search div div div.ctn-search ul {
@@ -282,7 +291,8 @@ section.trending {
     padding-top: 31px; }
   section.trending p.options {
     padding-bottom: 35px;
-    width: 80%; }
+    width: 80%;
+    cursor: pointer; }
     section.trending p.options span {
       font-size: 14px;
       line-height: 25px;
@@ -322,7 +332,8 @@ section.results {
           font-weight: 700; }
       section.results div.ctn-results div.root div.ctn-gif {
         width: 100%;
-        position: relative; }
+        position: relative;
+        cursor: pointer; }
         section.results div.ctn-results div.root div.ctn-gif img.img-gif {
           display: block;
           width: 100%;
@@ -345,6 +356,7 @@ section.results {
             display: flex;
             padding-right: 2.5px; }
             section.results div.ctn-results div.root div.ctn-gif div.overlay div.group-icons div.icon {
+              cursor: pointer;
               opacity: 0.7;
               background: #FFFFFF;
               width: 20px;
@@ -380,7 +392,8 @@ section.results {
       background-color: #FFFFFF;
       margin-top: 45px;
       margin-bottom: 45px;
-      font-weight: 600; }
+      font-weight: 600;
+      cursor: pointer; }
       body.dark section.results div.ctn-results button.see-more {
         color: #FFFFFF;
         border: solid 1px #FFFFFF;
@@ -442,7 +455,8 @@ section.favorites, section.mygifos {
         font-weight: 700; }
     section.favorites div.root-fav div.ctn-gif, section.favorites div.ctn-content div.ctn-gif, section.mygifos div.root-fav div.ctn-gif, section.mygifos div.ctn-content div.ctn-gif {
       width: 100%;
-      position: relative; }
+      position: relative;
+      cursor: pointer; }
       section.favorites div.root-fav div.ctn-gif img.img-gif, section.favorites div.ctn-content div.ctn-gif img.img-gif, section.mygifos div.root-fav div.ctn-gif img.img-gif, section.mygifos div.ctn-content div.ctn-gif img.img-gif {
         display: block;
         width: 100%;
@@ -465,6 +479,7 @@ section.favorites, section.mygifos {
           display: flex;
           padding-right: 2.5px; }
           section.favorites div.root-fav div.ctn-gif div.overlay div.group-icons div.icon, section.favorites div.ctn-content div.ctn-gif div.overlay div.group-icons div.icon, section.mygifos div.root-fav div.ctn-gif div.overlay div.group-icons div.icon, section.mygifos div.ctn-content div.ctn-gif div.overlay div.group-icons div.icon {
+            cursor: pointer;
             opacity: 0.7;
             background: #FFFFFF;
             width: 20px;
@@ -496,6 +511,7 @@ section.favorites, section.mygifos {
     section.favorites div.root-fav div.ctn-gif:hover div.overlay, section.favorites div.ctn-content div.ctn-gif:hover div.overlay, section.mygifos div.root-fav div.ctn-gif:hover div.overlay, section.mygifos div.ctn-content div.ctn-gif:hover div.overlay {
       opacity: 0.7; }
   section.favorites button.see-more, section.mygifos button.see-more {
+    cursor: pointer;
     color: #572EE5;
     background-color: #FFFFFF;
     margin: 45px 0px;
@@ -548,7 +564,13 @@ section.gifcommunity {
       section.gifcommunity div.ctn-gifcomm div.mainctn-gifs i.prev {
         left: 1%;
         transform: translateY(280%);
-        display: none; }
+        display: none;
+        color: #572EE5;
+        font-size: x-large; }
+        body.dark section.gifcommunity div.ctn-gifcomm div.mainctn-gifs i.prev {
+          color: #FFFFFF;
+          border: solid 1px #FFFFFF;
+          background-color: #37383C; }
       section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs {
         position: relative;
         display: flex;
@@ -568,6 +590,7 @@ section.gifcommunity {
           justify-content: center;
           transition: .5s ease-in-out; }
           section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs div.sctn-gifs div.ctn-gif {
+            cursor: pointer;
             margin: 0 10px;
             position: relative;
             width: 100%;
@@ -582,7 +605,13 @@ section.gifcommunity {
       section.gifcommunity div.ctn-gifcomm div.mainctn-gifs i.next {
         right: 1%;
         transform: translateY(-370%);
-        display: none; }
+        display: none;
+        color: #572EE5;
+        font-size: x-large; }
+        body.dark section.gifcommunity div.ctn-gifcomm div.mainctn-gifs i.next {
+          color: #FFFFFF;
+          border: solid 1px #FFFFFF;
+          background-color: #37383C; }
 
 section.creategif {
   width: 100%;
@@ -590,9 +619,9 @@ section.creategif {
   section.creategif div.ctn-creategif {
     display: flex;
     justify-content: center;
-    transform: translateX(-1.7%); }
+    overflow: hidden; }
     section.creategif div.ctn-creategif div.ctn-camera {
-      display: flex;
+      display: none;
       justify-content: flex-end; }
       section.creategif div.ctn-creategif div.ctn-camera .light-camera {
         margin-top: 5px; }
@@ -605,8 +634,8 @@ section.creategif {
         padding: 10px;
         background-color: #FFFFFF;
         border: 1px solid #572EE5;
-        min-height: 400px;
-        width: 600px;
+        min-height: 300px;
+        width: 250px;
         height: 300px;
         max-width: 600px;
         position: relative;
@@ -650,7 +679,8 @@ section.creategif {
             flex-direction: column;
             text-align: center;
             max-height: 300px;
-            max-width: 500px; }
+            max-width: 500px;
+            width: 100%; }
             section.creategif div.ctn-creategif div.ctn-maker .container-making .flex-text-create .text-inside-create h1 {
               font-family: "Montserrat", sans-serif;
               color: #572EE5;
@@ -666,6 +696,22 @@ section.creategif {
               margin: 14px 0; }
               body.dark section.creategif div.ctn-creategif div.ctn-maker .container-making .flex-text-create .text-inside-create p {
                 color: #FFFFFF; }
+            section.creategif div.ctn-creategif div.ctn-maker .container-making .flex-text-create .text-inside-create .video-card {
+              position: absolute;
+              max-height: 300px;
+              top: 50%;
+              left: 50%;
+              -webkit-transform: translate(-50%, -50%);
+              background: rgba(87, 46, 229, 0.7);
+              font-family: 'Montserrat', sans-serif;
+              text-align: center;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              color: #FFFFFF; }
+              section.creategif div.ctn-creategif div.ctn-maker .container-making .flex-text-create .text-inside-create .video-card img {
+                width: 25%;
+                padding-top: 35px; }
       section.creategif div.ctn-creategif div.ctn-maker .container-control {
         width: 100%; }
         section.creategif div.ctn-creategif div.ctn-maker .container-control .container-steps {
@@ -695,6 +741,8 @@ section.creategif {
             transform: translate(125%, 20%);
             font-weight: 700;
             cursor: pointer; }
+          section.creategif div.ctn-creategif div.ctn-maker .container-control .container-steps .time-recording {
+            color: #572EE5; }
         section.creategif div.ctn-creategif div.ctn-maker .container-control .container-line {
           margin: 10px auto;
           height: 5px;
@@ -724,7 +772,7 @@ section.creategif {
         section.creategif div.ctn-creategif div.ctn-maker .container-control .container-buttons .hideBtn {
           display: none; }
     section.creategif div.ctn-creategif div.container-roll {
-      display: flex;
+      display: none;
       flex-direction: column;
       justify-content: flex-end;
       transform: translateY(-60px); }
@@ -737,6 +785,51 @@ section.creategif {
       body.dark section.creategif div.ctn-creategif .hideL {
         display: block; }
 
+@media only screen and (min-width: 600px) {
+  section.results div.ctn-results {
+    padding: 20px 10%; }
+
+  section.results div.ctn-results div.root,
+  section.favorites div.root-fav,
+  section.mygifos div.ctn-content {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 30px;
+    grid-row-gap: 35px;
+    margin: 0 auto; }
+
+  section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs {
+    overflow: hidden; }
+
+  section.gifcommunity div.ctn-gifcomm div.mainctn-gifs i.prev {
+    display: flex; }
+
+  section.gifcommunity div.ctn-gifcomm div.mainctn-gifs i.next {
+    display: flex; }
+
+  section.creategif div.ctn-creategif div.ctn-maker .container-making {
+    width: 600px;
+    height: 335px; }
+
+  section.creategif div.ctn-creategif div.container-roll {
+    display: flex; }
+
+  section.creategif div.ctn-creategif div.ctn-camera {
+    display: flex; }
+
+  div.modal-content {
+    display: flex;
+    justify-content: center; }
+
+  div.modal-content div {
+    max-width: 400px; }
+
+  span.close {
+    position: absolute;
+    right: 0;
+    margin: -5% 15%; }
+
+  div.modal {
+    z-index: 10; } }
 footer {
   width: 100%;
   border-bottom: solid 5px #572EE5; }
@@ -752,21 +845,40 @@ footer {
     height: 196px; }
     body.dark footer div.ctn-footer {
       color: #FFFFFF; }
-    footer div.ctn-footer p.share {
+    body.dark footer div.ctn-footer div.social-media {
+      color: #FFFFFF; }
+    footer div.ctn-footer div.social-media p.share {
       font-size: 15px;
       padding-top: 47px;
       padding-bottom: 0; }
-    footer div.ctn-footer div.social {
+    footer div.ctn-footer div.social-media div.social {
       display: flex;
       flex-direction: row;
       padding-bottom: 40px;
       padding-top: 22px; }
-      footer div.ctn-footer div.social i {
+      footer div.ctn-footer div.social-media div.social i {
         color: #CED7E1;
         margin: 5px; }
     footer div.ctn-footer p {
       font-size: 14px;
       line-height: 20px;
       padding-bottom: 23px; }
+
+@media only screen and (min-width: 600px) {
+  footer div.ctn-footer {
+    justify-content: space-around;
+    flex-direction: row;
+    height: fit-content; }
+    footer div.ctn-footer div.social-media {
+      display: flex;
+      text-align: center; }
+      footer div.ctn-footer div.social-media div.social {
+        padding-bottom: 23px; }
+        footer div.ctn-footer div.social-media div.social a {
+          padding: 0 5px; }
+      footer div.ctn-footer div.social-media p.share {
+        padding-top: 25px; }
+    footer div.ctn-footer p {
+      padding-bottom: 0; } }
 
 /*# sourceMappingURL=style.css.map */
