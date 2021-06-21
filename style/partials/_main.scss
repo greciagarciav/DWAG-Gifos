@@ -451,6 +451,7 @@ section.favorites, section.mygifos {
 
 section.gifcommunity {
     width: 100%;    
+
    div.ctn-gifcomm {
        display: flex;
        align-items: center;
@@ -526,10 +527,10 @@ section.gifcommunity {
                 justify-content: center;
                 transition: .5s ease-in-out;
                 div.ctn-gif {
+                    width: 100%;
+                    position: relative;
                     cursor: pointer;
                     margin: 0 10px;
-                    position: relative;
-                    width: 100%;
                     float: left;
                     display: flex;
                     box-sizing: border-box;
@@ -538,9 +539,65 @@ section.gifcommunity {
                         height: 300px;
                         }
                         div.overlay {
-                            display: none;
+                            position: absolute;
+                            top: 0;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            height: 100%;
+                            width: 100%;
+                            opacity: 0;
+                            transition: .5s ease;
+                            background-color: $first-color;
+                            div.group-icons {
+                                position: absolute;
+                                right: 0;
+                                top: 0;
+                                display: flex;
+                                padding-right: 2.5px;
+                                div.icon {
+                                    cursor: pointer;
+                                    opacity: 0.7;
+                                    background: $fifth-color;
+                                    width: 20px;
+                                    height: 20px;
+                                    margin: 5px 2.5px;
+                                    border-radius: 6px;
+                                    i {
+                                        color: $first-color;
+                                        margin-left: 0.5px;
+                                        font-size: 12px;
+                                    }
+                                }
+                                div.icon:hover {
+                                    opacity: 1;
+                                }
+                            }
+                            div.text-card {
+                                position: absolute;
+                                left: 0;
+                                bottom: 0;
+                                text-align: left;
+                                p.text-user {
+                                    font-family: $second-font;
+                                    font-size: 14px;
+                                    color: $fifth-color;
+                                    padding-left: 12px;
+                                }
+                                p.text-gift {
+                                    font-family: $second-font;
+                                    font-size: 15px;
+                                    color: $fifth-color;
+                                    padding-left: 12px;
+                                    padding-bottom: 5px;
+                                    width: 80%;
+                                }
+                            } 
                         }
-                    }
+                }
+                div.ctn-gif:hover div.overlay {
+                    opacity: 0.7;
+                }
             }  
            }
         i.next {

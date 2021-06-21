@@ -590,10 +590,10 @@ section.gifcommunity {
           justify-content: center;
           transition: .5s ease-in-out; }
           section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs div.sctn-gifs div.ctn-gif {
+            width: 100%;
+            position: relative;
             cursor: pointer;
             margin: 0 10px;
-            position: relative;
-            width: 100%;
             float: left;
             display: flex;
             box-sizing: border-box;
@@ -601,7 +601,55 @@ section.gifcommunity {
             section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs div.sctn-gifs div.ctn-gif .img-gif {
               height: 300px; }
             section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs div.sctn-gifs div.ctn-gif div.overlay {
-              display: none; }
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              height: 100%;
+              width: 100%;
+              opacity: 0;
+              transition: .5s ease;
+              background-color: #572EE5; }
+              section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs div.sctn-gifs div.ctn-gif div.overlay div.group-icons {
+                position: absolute;
+                right: 0;
+                top: 0;
+                display: flex;
+                padding-right: 2.5px; }
+                section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs div.sctn-gifs div.ctn-gif div.overlay div.group-icons div.icon {
+                  cursor: pointer;
+                  opacity: 0.7;
+                  background: #FFFFFF;
+                  width: 20px;
+                  height: 20px;
+                  margin: 5px 2.5px;
+                  border-radius: 6px; }
+                  section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs div.sctn-gifs div.ctn-gif div.overlay div.group-icons div.icon i {
+                    color: #572EE5;
+                    margin-left: 0.5px;
+                    font-size: 12px; }
+                section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs div.sctn-gifs div.ctn-gif div.overlay div.group-icons div.icon:hover {
+                  opacity: 1; }
+              section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs div.sctn-gifs div.ctn-gif div.overlay div.text-card {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                text-align: left; }
+                section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs div.sctn-gifs div.ctn-gif div.overlay div.text-card p.text-user {
+                  font-family: "Roboto", sans-serif;
+                  font-size: 14px;
+                  color: #FFFFFF;
+                  padding-left: 12px; }
+                section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs div.sctn-gifs div.ctn-gif div.overlay div.text-card p.text-gift {
+                  font-family: "Roboto", sans-serif;
+                  font-size: 15px;
+                  color: #FFFFFF;
+                  padding-left: 12px;
+                  padding-bottom: 5px;
+                  width: 80%; }
+          section.gifcommunity div.ctn-gifcomm div.mainctn-gifs div.ctn-gifs div.sctn-gifs div.ctn-gif:hover div.overlay {
+            opacity: 0.7; }
       section.gifcommunity div.ctn-gifcomm div.mainctn-gifs i.next {
         right: 1%;
         transform: translateY(-370%);
