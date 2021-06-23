@@ -834,7 +834,7 @@ section.creategif {
         display: block; }
 
 @media only screen and (min-width: 600px) {
-  section.results div.ctn-results {
+  section.results div.ctn-results, section.favorites div.root-fav, section.mygifos div.ctn-content {
     padding: 20px 10%; }
 
   section.results div.ctn-results div.root,

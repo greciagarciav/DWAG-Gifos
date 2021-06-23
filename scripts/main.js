@@ -41,14 +41,60 @@ const urlGet = (url, input, limit, offset) => {
 const sendApiRequest = async(url) => {
     let response = await fetch(url);
     let nextResponse = await response.json();
-    data = nextResponse.data;
-    return data;
+    const result = nextResponse.data;
+    return result;
 };
 
 //styles to remove when modal of gif is created
 const removeStylesGif = (id, clasStl) => {
     const elem1 = document.getElementById(id);
     elem1.classList.remove(clasStl);
+}
+
+//Metodo que asigna evento de favoritos
+const assingEventFavorites = (sectClass) => {
+    const eventFavorite = document.querySelectorAll(sectClass);
+
+    eventFavorite.forEach((card) => {
+        card.addEventListener('click', async (event) => {
+            const cardId = event.target.closest('.ctn-gif').id;
+            let saved = localStorage.getItem('Favoritos');
+            let saved2;
+
+            if(saved !== null) {
+                saved2 = JSON.parse(saved);
+                const idExist = saved2.includes(cardId);
+                    if(!idExist) {
+                        saved2.push(cardId);
+                        localStorage.setItem('Favoritos', JSON.stringify(saved2));
+                    }
+            } else {
+                let saved3 = [];
+                saved3.push(cardId);
+                localStorage.setItem('Favoritos', JSON.stringify(saved3));
+            }  
+        });
+    });
+}
+//Metodo que asigna evento de download
+const assingEventDownload = (sectClass) => {
+    const eventDownload = document.querySelectorAll(sectClass);
+
+    eventDownload.forEach((card) =>{
+
+        card.addEventListener('click', async (event) => {
+            const cardId = event.target.closest('.ctn-gif').id;
+            data = await sendApiRequest(urlGif(cardId));
+
+            let a = document.createElement('a');
+                let response = await fetch(`${data.images.downsized.url}`);
+                let file = await response.blob();
+                a.download = `${data.title}`;
+                a.href = window.URL.createObjectURL(file);
+                a.dataset.downloadurl = ['application/octet-stream', a.download, a.href].join(':');
+                a.click();
+        });
+    });
 }
 
 // Método que asigna evento del modal a gifs
@@ -87,7 +133,7 @@ const assignCardEvent =  (sectionEvent, sectClass, rightView) => {
                     modalHtml.outerHTML = "";
                 }
             });
-            
+
             favGif.addEventListener('click', () => {
                 let saved = localStorage.getItem('Favoritos');
                 let saved2;
@@ -175,6 +221,8 @@ const trendingGifs = async () => {
     const ctnGifs = document.getElementById('sctn-gifs');
     data = await sendApiRequest(urlTrendGifs + '&limit=12&rating=g');
     ctnGifs.innerHTML = tempGif(data);
+    assingEventFavorites('.sctn-gifs .ctn-gif .love');
+    assingEventDownload('.sctn-gifs .ctn-gif .download');
     assignCardEvent('gifcommunity', '.sctn-gifs .ctn-gif .expand');
 };
 
@@ -205,9 +253,6 @@ const Move = (value) => {
     }
 }
 
-
-
-
 // Inicializa y muestra los 12 gifs más buscados
 trendingGifs();
 
@@ -216,29 +261,37 @@ const searchGifs = async (url, id, limit, offset) => {
     const urlForSearch = urlGet(url, id, limit, offset);
     data = await sendApiRequest(urlForSearch);
     gifsResultSearch(id);
-    
     const root = document.getElementById('root');
-    if (data.length !== 0) {
+    if (data.length > 0) {
+        console.log(data.length, '2');
         root.innerHTML = tempGif(data);
+        assingEventFavorites('.root .ctn-gif .love');
+        assingEventDownload('.root .ctn-gif .download');
         assignCardEvent('root', '.root .ctn-gif .expand');
         const btnSeeMore = document.getElementById('see-more');
         let offset = 0;
         const limit = 12;
         btnSeeMore.addEventListener('click', async () => {
+            console.log(data.length, '3');
             if (data.length >= 12) {
+                console.log(data.length, '4');
                 offset = offset + 12;
                 const urlForSearch = urlGet(url, id, limit, offset);
                 data = [].concat(data, await sendApiRequest(urlForSearch));
                 root.innerHTML = tempGif(data);
+                assingEventFavorites('.root .ctn-gif .love');
+                assingEventDownload('.root .ctn-gif .download');
                 assignCardEvent('root', '.root .ctn-gif .expand');
             } else {
                 document.querySelector('.see-more').style.display = 'none';
+                console.log('Hola_1');
             }
         });
     } else {
         document.getElementById('root').innerHTML = viewNoResults;
         document.getElementById('root').style.display = 'block';
         document.querySelector('.see-more').style.display = 'none';
+        console.log('Hola_2 ');
     }
 };
 
@@ -257,8 +310,8 @@ inputGift.addEventListener('keyup', async () => {
     iClean.style.display = 'block';
 
     const url = urlSuggestSearch + `=${inputGift.value}`;
-    data = await sendApiRequest(url);
-    suggestionSearch(data, suggestList);
+    const suggestion = await sendApiRequest(url);
+    suggestionSearch(suggestion, suggestList);
 
     suggestList.addEventListener('click', async (event) => {
         resultsSection.innerHTML = '';
@@ -346,6 +399,8 @@ favs.addEventListener('click', () => {
             data = await sendApiRequest(urlGif(idGif));
             temp += tempGif(data);
             rootFavs.innerHTML = temp;
+            assingEventFavorites('.root-fav .ctn-gif .love');
+            assingEventDownload('.root-fav .ctn-gif .download');
             assignCardEvent('root-fav', '.root-fav .ctn-gif .expand');
             });
 
@@ -363,6 +418,8 @@ favs.addEventListener('click', () => {
                     data = [].concat(data, await sendApiRequest(urlGif(idGif))) ;
                     temp += tempGif(data);
                     rootFavs.innerHTML = temp;
+                    assingEventFavorites('.root-fav .ctn-gif .love');
+                    assingEventDownload('.root-fav .ctn-gif .download');
                     assignCardEvent('root-fav', '.root-fav .ctn-gif .expand', true);
                     });
             });
@@ -372,6 +429,8 @@ favs.addEventListener('click', () => {
             data = await sendApiRequest(urlGif(idGif));
             temp += tempGif(data);
             rootFavs.innerHTML = temp;
+            assingEventFavorites('.root-fav .ctn-gif .love');
+            assingEventDownload('.root-fav .ctn-gif .download');
             assignCardEvent('root-fav', '.root-fav .ctn-gif .expand', true);
             });
 
@@ -408,6 +467,8 @@ myGifos.addEventListener('click', () => {
                 data = await sendApiRequest(urlGif(idGif));
                 temp += tempGif(data);
                 rootMyGifos.innerHTML = temp;
+                assingEventFavorites('.ctn-content .ctn-gif .love');
+                assingEventDownload('.ctn-content .ctn-gif .download');
                 assignCardEvent('root-my-gifos', '.ctn-content .ctn-gif .expand');
                 });
 
@@ -425,6 +486,8 @@ myGifos.addEventListener('click', () => {
                         data = [].concat(data, await sendApiRequest(urlGif(idGif))) ;
                         temp += tempGif(data);
                         rootMyGifos.innerHTML = temp;
+                        assingEventFavorites('.ctn-content .ctn-gif .love');
+                        assingEventDownload('.ctn-content .ctn-gif .download');
                         assignCardEvent('root-my-gifos', '.ctn-content .ctn-gif .expand', true);
                         });
                 });
@@ -434,6 +497,8 @@ myGifos.addEventListener('click', () => {
             data = await sendApiRequest(urlGif(idGif));
             temp += tempGif(data);
             rootMyGifos.innerHTML = temp;
+            assingEventFavorites('.ctn-content .ctn-gif .love');
+            assingEventDownload('.ctn-content .ctn-gif .download');
             assignCardEvent('root-my-gifos', '.ctn-content .ctn-gif .expand', true);
             });
         }
