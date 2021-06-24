@@ -76,6 +76,7 @@ const assingEventFavorites = (sectClass) => {
         });
     });
 }
+
 //Metodo que asigna evento de download
 const assingEventDownload = (sectClass) => {
     const eventDownload = document.querySelectorAll(sectClass);
@@ -174,7 +175,6 @@ const assignCardEvent =  (sectionEvent, sectClass, rightView) => {
                         if (index > -1) {                    
                             arrMyGifos.splice(index, 1);
                             localStorage.setItem('MyGifs',JSON.stringify(arrMyGifos));
-                            console.log('deleteMyGif');
                             }
                     }
                 });
@@ -188,7 +188,6 @@ const assignCardEvent =  (sectionEvent, sectClass, rightView) => {
                             arrFavoritos.splice(index, 1);
                             localStorage.setItem('Favoritos',JSON.stringify(arrFavoritos));
                             favs.click();
-                            console.log('deleteFav');
                         }
                     }
                 }); 
@@ -263,7 +262,6 @@ const searchGifs = async (url, id, limit, offset) => {
     gifsResultSearch(id);
     const root = document.getElementById('root');
     if (data.length > 0) {
-        console.log(data.length, '2');
         root.innerHTML = tempGif(data);
         assingEventFavorites('.root .ctn-gif .love');
         assingEventDownload('.root .ctn-gif .download');
@@ -272,9 +270,7 @@ const searchGifs = async (url, id, limit, offset) => {
         let offset = 0;
         const limit = 12;
         btnSeeMore.addEventListener('click', async () => {
-            console.log(data.length, '3');
             if (data.length >= 12) {
-                console.log(data.length, '4');
                 offset = offset + 12;
                 const urlForSearch = urlGet(url, id, limit, offset);
                 data = [].concat(data, await sendApiRequest(urlForSearch));
@@ -284,18 +280,16 @@ const searchGifs = async (url, id, limit, offset) => {
                 assignCardEvent('root', '.root .ctn-gif .expand');
             } else {
                 document.querySelector('.see-more').style.display = 'none';
-                console.log('Hola_1');
             }
         });
     } else {
         document.getElementById('root').innerHTML = viewNoResults;
         document.getElementById('root').style.display = 'block';
         document.querySelector('.see-more').style.display = 'none';
-        console.log('Hola_2 ');
     }
 };
 
-// 
+// Muestra la lista de opciones mientras se escribe en el buscador
 inputGift.addEventListener('keyup', async () => {
     suggestList.innerHTML = '';
     if (inputGift.value.length === 0) {
@@ -322,7 +316,7 @@ inputGift.addEventListener('keyup', async () => {
     });
 });
 
-// 
+// Busca gifs cuando se presiona enter luego de escribir la palabra a buscar
 inputGift.addEventListener('keypress', async (event) =>{
     suggestList.innerHTML = '';
     if (inputGift.value.length === 0) {
@@ -634,14 +628,6 @@ function startCreateGif () {
     })
 }
 
-
-const successCard = `
-<div id="video-card-success" class="video-card hideBtn">
-<img src="assets/loader.svg" alt="loader">
-<h3>GIFO subido con éxito <br> ve a verlo en MIS GIFOS </h3>
-</div>
-`
-
 async function uploadGif (file) {
     document.getElementById('uploading').style.display = 'none'
     let vidWidth = document.getElementsByTagName('video')[0].offsetWidth;
@@ -661,10 +647,6 @@ async function uploadGif (file) {
                           <h3>GIFO subido con éxito <br> ve a verlo en MIS GIFOS</h3>`
                           console.log("Uploaded")
 }
-
-// document.getElementById('repeat').addEventListener('click', function(){
-//     window.location.reload();
-// })
 
 const addLS = (name, value) => {
     let createdGifs = localStorage.getItem(name)
@@ -711,18 +693,7 @@ async function postGifos(file){
     }
 }
 
-// const showSearch = () => {
-//     let y = window.scrollY
-//     if(y!== 0){
-//         document.querySelector('.header').style.boxShadow = '1px 1px 4px 0 rgba(0, 0, 0, .1)'
-//     }else{
-//         document.querySelector('.header').style.boxShadow = 'none'
-//     }
-// }
-// window.addEventListener("scroll", showSearch())
-
 repeatCapture.addEventListener('click', () => {
     
     console.log('hola');
 });
-
